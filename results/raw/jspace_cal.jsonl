@@ -1,0 +1,12 @@
+{"mode": "jlens", "k": 4, "alpha": 0.5, "ppl_ratio": 1.0435581526268243, "top1_agree": 0.9086538461538461, "kl_per_tok": 0.1330489734044442, "removed_rms": 41.60492254080054}
+{"mode": "jlens", "k": 4, "alpha": 1.0, "ppl_ratio": 1.1217410351514345, "top1_agree": 0.8317307692307693, "kl_per_tok": 0.23117593045418078, "removed_rms": 81.57753223574016}
+{"mode": "jlens", "k": 8, "alpha": 0.5, "ppl_ratio": 1.081334096727326, "top1_agree": 0.8701923076923077, "kl_per_tok": 0.16609546427543348, "removed_rms": 47.133703576655684}
+{"mode": "jlens", "k": 8, "alpha": 1.0, "ppl_ratio": 1.1632155645454687, "top1_agree": 0.8173076923076923, "kl_per_tok": 0.2824483559681819, "removed_rms": 89.43072298368685}
+{"mode": "jlens", "k": 16, "alpha": 0.5, "ppl_ratio": 1.122832963686849, "top1_agree": 0.8653846153846154, "kl_per_tok": 0.1959403661581186, "removed_rms": 53.7809881087554}
+{"mode": "jlens", "k": 16, "alpha": 1.0, "ppl_ratio": 1.1266803753865646, "top1_agree": 0.7788461538461539, "kl_per_tok": 0.32705031449978167, "removed_rms": 99.25626225963126}
+{"mode": "random", "k": 4, "alpha": 0.5, "ppl_ratio": 1.053483691739553, "top1_agree": 0.9471153846153846, "kl_per_tok": 0.08238796087411734, "removed_rms": 41.13280215880716}
+{"mode": "random", "k": 4, "alpha": 1.0, "ppl_ratio": 1.1843804438210024, "top1_agree": 0.8798076923076923, "kl_per_tok": 0.2155661594409209, "removed_rms": 81.92563220163008}
+{"mode": "random", "k": 8, "alpha": 0.5, "ppl_ratio": 1.112706003005006, "top1_agree": 0.9038461538461539, "kl_per_tok": 0.1368927382505857, "removed_rms": 69.89592621909708}
+{"mode": "random", "k": 8, "alpha": 1.0, "ppl_ratio": 1.2409270665237777, "top1_agree": 0.8221153846153846, "kl_per_tok": 0.2890550517118894, "removed_rms": 139.03683110299795}
+{"mode": "random", "k": 16, "alpha": 0.5, "ppl_ratio": 1.2889792723948688, "top1_agree": 0.8605769230769231, "kl_per_tok": 0.2696371628687932, "removed_rms": 96.50055024795347}
+{"mode": "random", "k": 16, "alpha": 1.0, "ppl_ratio": 1.5107921223416945, "top1_agree": 0.7692307692307693, "kl_per_tok": 0.49351532184160674, "removed_rms": 192.78153120595513}

@@ -1,0 +1,8 @@
+{"mode": "jlens", "k": 8, "alpha": 0.5, "ppl_ratio": 0.8684884552814371, "top1_agree": 0.7788461538461539, "kl_per_tok": 0.2729966021501101, "removed_rms": 42.58416821548271}
+{"mode": "jlens", "k": 8, "alpha": 1.0, "ppl_ratio": 1.133056580370616, "top1_agree": 0.6682692307692307, "kl_per_tok": 0.6451722796146686, "removed_rms": 82.87131984716912}
+{"mode": "jlens", "k": 16, "alpha": 0.5, "ppl_ratio": 0.8454352785354179, "top1_agree": 0.7548076923076923, "kl_per_tok": 0.3525646993747124, "removed_rms": 51.32418346832417}
+{"mode": "jlens", "k": 16, "alpha": 1.0, "ppl_ratio": 1.4171429594304537, "top1_agree": 0.6298076923076923, "kl_per_tok": 0.885791132083306, "removed_rms": 109.51653738959041}
+{"mode": "random", "k": 8, "alpha": 0.5, "ppl_ratio": 0.9871502924613118, "top1_agree": 0.8942307692307693, "kl_per_tok": 0.0696671330011808, "removed_rms": 30.74662340588366}
+{"mode": "random", "k": 8, "alpha": 1.0, "ppl_ratio": 1.0652132739653033, "top1_agree": 0.8028846153846154, "kl_per_tok": 0.24811027714839348, "removed_rms": 61.29893890520245}
+{"mode": "random", "k": 16, "alpha": 0.5, "ppl_ratio": 1.1927254422770963, "top1_agree": 0.8317307692307693, "kl_per_tok": 0.1439367257631742, "removed_rms": 54.09463241008372}
+{"mode": "random", "k": 16, "alpha": 1.0, "ppl_ratio": 1.833593435761938, "top1_agree": 0.7067307692307693, "kl_per_tok": 0.5389974484076867, "removed_rms": 108.11158298425609}
