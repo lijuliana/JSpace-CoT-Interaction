@@ -61,6 +61,11 @@ def patched_sdpa(q, k, v, attn_mask=None, **kw):
                            device=q.device))
         else:
             attn_mask = attn_mask.clone()
+        if kw.pop("is_causal", False):
+            causal = torch.full((qlen, klen), float("-inf"),
+                                dtype=q.dtype, device=q.device)
+            attn_mask = attn_mask + torch.triu(causal,
+                                               diagonal=klen - qlen + 1)
         # absolute position of query row r is klen - qlen + r
         first_row = max(0, from_q - (klen - qlen))
         if first_row < qlen:

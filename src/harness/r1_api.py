@@ -17,6 +17,26 @@ from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from harness.api_readback import converse  # noqa: E402
+
+LLAMA_TMPL = ("<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n"
+              "{user}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"
+              "\n\n{prefill}")
+
+
+def llama_invoke(client, model_id, user_text, prefill, max_tokens):
+    """Bedrock Llama has no Converse prefill; continue via raw template."""
+    body = json.dumps({
+        "prompt": LLAMA_TMPL.format(user=user_text, prefill=prefill),
+        "max_gen_len": max_tokens, "temperature": 0.6, "top_p": 0.95})
+    for attempt in range(6):
+        try:
+            r = client.invoke_model(modelId=model_id, body=body)
+            return json.loads(r["body"].read())["generation"]
+        except Exception:
+            if attempt == 5:
+                raise
+            import time
+            time.sleep(2 ** attempt)
 from harness.r1_recompute import (  # noqa: E402
     make_item, forward_from, prefix, final_answer)
 
@@ -56,9 +76,15 @@ def main():
         def run(job):
             ix, rend, cell, p, pre, tgt = job
             it = items[ix]
+            if "anthropic" in args.model_id:
+                pre = pre.rstrip()
             try:
-                text = converse(client, args.model_id, p, pre,
-                                args.max_tokens)
+                if "meta.llama" in args.model_id:
+                    text = llama_invoke(client, args.model_id, p, pre,
+                                        args.max_tokens)
+                else:
+                    text = converse(client, args.model_id, p, pre,
+                                    args.max_tokens)
             except Exception as e:
                 return {"exp": "r1api", "model": args.model_id,
                         "seed": seed, "item": ix, "rendering": rend,
