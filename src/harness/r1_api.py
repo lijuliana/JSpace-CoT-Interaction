@@ -72,6 +72,22 @@ def main():
                 jobs.append((ix, rend, "floor", p,
                              prefix(it, it["vals"][it["j"]]),
                              forward_from(it, it["j"], vj_bad)))
+            # offtarget control: generative sentence present (shallow
+            # prompt defines v_j), but the edit is at j2 = j + 2, a value
+            # the prompt does not define. Targeted verification predicts
+            # following here matches deep; global re-solving predicts
+            # reversion like shallow.
+            j2 = it["j"] + 2
+            v2_bad = it["vals"][j2] + delta
+            lines = it["lines"][:j2]
+            lines[-1] = f"After step {j2} the value is {v2_bad}."
+            pre2 = "\n".join(lines) + "\n"
+            jobs.append((ix, "offtarget", "edit", it["shallow_prompt"],
+                         pre2, forward_from(it, j2, v2_bad)))
+            lines[-1] = f"After step {j2} the value is {it['vals'][j2]}."
+            jobs.append((ix, "offtarget", "floor", it["shallow_prompt"],
+                         "\n".join(lines) + "\n",
+                         forward_from(it, j2, v2_bad)))
 
         def run(job):
             ix, rend, cell, p, pre, tgt = job
@@ -95,7 +111,8 @@ def main():
                     "rendering": rend, "cell": cell, "answer": ans,
                     "clean": str(it["answer"]), "edit_target": str(tgt),
                     "follows_edit": ans == str(tgt),
-                    "follows_clean": ans == str(it["answer"])}
+                    "follows_clean": ans == str(it["answer"]),
+                    "text": text[:300]}
 
         with ThreadPoolExecutor(args.concurrency) as ex:
             for i, rec in enumerate(ex.map(run, jobs)):

@@ -6,11 +6,13 @@ strong reversion. Hypothesis: verification triggers on a salient
 prompt-stated anchor, and succeeds only if the model can bridge the
 distance from anchor to edited value internally.
 
-Design: deep chain, d=16, edit at fixed j=12. The prompt additionally
-states, as a checkable fact, the running value after operation j-delta
-("A checkpoint reading after operation k shows the running value is V.").
-Sweep delta in {1, 2, 4, 8} plus a no-anchor control (delta=none).
-Rederiving the edited value from the anchor takes exactly delta ops.
+Design v2 (after adversarial review): the v1 anchor was redundant with
+the visible trace, so flat curves were overdetermined. Now the prefill is
+truncated to start at step k+1 (k = j - delta), so the trace never shows
+v_k; the anchor sentence is the sole source of that value. Cells cross
+anchor presence with the same truncation: anchored vs unanchored at each
+delta, edit vs floor. Rederivation of the edited value needs delta ops
+from the anchor when present, or j ops from the prompt start when not.
 
 Prediction: follow rate rises with delta at a model-specific rate; the
 delta at which following recovers to the no-anchor level is the model's
@@ -51,8 +53,7 @@ def main():
     ap.add_argument("--n", type=int, default=150)
     ap.add_argument("--d", type=int, default=16)
     ap.add_argument("--j", type=int, default=12)
-    ap.add_argument("--deltas", nargs="+", default=["1", "2", "4", "8",
-                                                    "none"])
+    ap.add_argument("--deltas", type=int, nargs="+", default=[1, 2, 4, 8])
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1])
     ap.add_argument("--region", default="us-east-1")
     ap.add_argument("--concurrency", type=int, default=8)
@@ -72,13 +73,19 @@ def main():
             dd = rng.choice([x for x in range(-9, 10) if x != 0])
             vj_bad = it["vals"][args.j] + dd
             tgt = forward_from(it, args.j, vj_bad)
-            for ds in args.deltas:
-                delta = None if ds == "none" else int(ds)
-                p = anchored_prompt(it, args.j, delta)
-                for cell, shown in (("edit", vj_bad),
-                                    ("floor", it["vals"][args.j])):
-                    jobs.append((ix, ds, cell, p, prefix(it, shown),
-                                 str(tgt), str(it["answer"])))
+            for delta in args.deltas:
+                k = args.j - delta
+                for anch in ("anchor", "noanchor"):
+                    p = anchored_prompt(it, args.j,
+                                        delta if anch == "anchor" else None)
+                    for cell, shown in (("edit", vj_bad),
+                                        ("floor", it["vals"][args.j])):
+                        lines = it["lines"][k:args.j]
+                        lines[-1] = (f"After step {args.j} the value "
+                                     f"is {shown}.")
+                        pre = "\n".join(lines) + "\n"
+                        jobs.append((ix, f"{delta}-{anch}", cell, p, pre,
+                                     str(tgt), str(it["answer"])))
 
         def run(job):
             ix, ds, cell, p, pre, tgt, clean = job
@@ -96,12 +103,13 @@ def main():
                         "item": ix, "delta": ds, "cell": cell,
                         "error": str(e)[:200]}
             ans = final_answer(text)
-            return {"exp": "r4b", "model": args.model_id, "seed": seed,
+            return {"exp": "r4b2", "model": args.model_id, "seed": seed,
                     "item": ix, "d": args.d, "j": args.j, "delta": ds,
                     "cell": cell, "answer": ans, "clean": clean,
                     "edit_target": tgt,
                     "follows_edit": ans == tgt,
-                    "follows_clean": ans == clean}
+                    "follows_clean": ans == clean,
+                    "text": text[:300]}
 
         with ThreadPoolExecutor(args.concurrency) as ex:
             for i, rec in enumerate(ex.map(run, jobs)):

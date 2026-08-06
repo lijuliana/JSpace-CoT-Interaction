@@ -122,7 +122,7 @@ def main():
     ap.add_argument("--temp", type=float, default=0.6)
     ap.add_argument("--conditions", nargs="+",
                     default=["none", "value", "neighbor", "operand",
-                             "random", "dots"])
+                             "random_prompt", "random_trace", "dots"])
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
@@ -156,14 +156,39 @@ def main():
                 elif cond == "neighbor":
                     kixs = token_span(tok, text, "value is", -1)
                 elif cond == "operand":
-                    op_amt = str(abs(it["deltas"][j])) \
-                        if j < len(it["deltas"]) else str(abs(it["deltas"][-1]))
-                    kixs = token_span(tok, text, op_amt, 0)
-                elif cond == "random":
-                    width = len(val_span)
-                    lo = max(0, min(val_span) - 120)
-                    start = rng.randint(lo, max(lo + 1, min(val_span) - 40))
-                    kixs = list(range(start, start + width))
+                    c = it["deltas"][j] if j < len(it["deltas"]) \
+                        else it["deltas"][-1]
+                    entry = (f"({j+1}) "
+                             f"{'add' if c >= 0 else 'subtract'} {abs(c)}")
+                    m = re.search(re.escape(entry), text)
+                    if m:
+                        sub = str(abs(c))
+                        cs = text.rfind(sub, m.start(), m.end())
+                        enc = tok(text, return_offsets_mapping=True)
+                        kixs = [i for i, (a, b) in
+                                enumerate(enc.offset_mapping)
+                                if a < cs + len(sub) and b > cs]
+                elif cond == "random_prompt":
+                    # a random op-list amount in the prompt, ops before j
+                    jj = rng.randint(0, max(0, j - 2))
+                    c = it["deltas"][jj]
+                    entry = (f"({jj+1}) "
+                             f"{'add' if c >= 0 else 'subtract'} {abs(c)}")
+                    m = re.search(re.escape(entry), text)
+                    if m:
+                        sub = str(abs(c))
+                        cs = text.rfind(sub, m.start(), m.end())
+                        enc = tok(text, return_offsets_mapping=True)
+                        kixs = [i for i, (a, b) in
+                                enumerate(enc.offset_mapping)
+                                if a < cs + len(sub) and b > cs]
+                elif cond == "random_trace":
+                    # an earlier written value line, matched token type
+                    jj = rng.randint(1, max(1, j - 2))
+                    kixs = token_span(tok, text,
+                                      f"value is {it['vals'][jj]}", 0)
+                    if kixs:
+                        kixs = kixs[2:] or kixs  # digits only
                 elif cond == "dots":
                     cs = text.rfind(str(vj_bad))
                     ktext = text[:cs] + "." * len(str(vj_bad)) \
@@ -171,12 +196,17 @@ def main():
                 out = gen_one(model, tok, ktext, kixs, from_q,
                               args.max_new, args.temp)
                 ans = final_answer(out)
+                enc_full = tok(ktext).input_ids
+                knocked = tok.decode([enc_full[i] for i in kixs]) \
+                    if kixs else None
                 fout.write(json.dumps({
                     "exp": "r2", "model": args.model, "seed": seed,
                     "item": ix, "j": j, "cond": cond, "answer": ans,
                     "clean": str(it["answer"]), "edit_target": str(tgt),
                     "follows_edit": ans == str(tgt),
                     "follows_clean": ans == str(it["answer"]),
+                    "kixs": kixs, "knocked": knocked,
+                    "text": out[:300],
                 }) + "\n")
             fout.flush()
             if ix % 20 == 0:
