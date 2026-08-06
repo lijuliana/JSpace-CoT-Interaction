@@ -91,3 +91,7 @@ Prior-art check on our claim: no published paper claims the full external-memory
 ## Phase 2 (after runs)
 
 Rewrite from scratch. Structure before prose: one-sentence claim, one figure per section each proving one thing, appendix holds full tables, prompts, and per-run configs. Real matplotlib figures, consistent style, readable at column width. Writing rules unchanged: no em dashes, no llm-isms, nothing that reads generated.
+
+## Revisions after the first result wave (2026-08-06)
+
+R1 and R2 landed as planned and the mechanism arm is ahead of schedule (two-model knockout localization at 0.000 vs baseline with neighbor intact). The boundary arm changed shape: the R4 depth sweep is non-monotone at low depth and R4b shows stated checkpoints are ignored at every distance, so the scope law is not follow-versus-depth with a capacity crossover. The defensible law is categorical: models verify a written value only against a generative definition in the prompt, never against implicit derivability or stated equalities, with capacity necessary for the override (absent in 4B/7B) and training policy deciding its use (absent in Llama-70B despite capacity). R4's planned r(m)-crossover figure is replaced by a three-condition dissociation figure (derivable / stated / generative) per model. The kill criterion in R4 (crossover does not track r(m)) fired in the informative direction: the paper reports the dissociation and says so plainly. Remaining runs unchanged: R3 generality, R5 lens arm, R6 scale, S1 slot algebra (running), S2 optional.
