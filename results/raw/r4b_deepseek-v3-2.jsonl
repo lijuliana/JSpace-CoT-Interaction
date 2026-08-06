@@ -1,0 +1,1 @@
+{"exp": "r4b", "model": "deepseek.v3.2", "seed": 0, "item": 0, "d": 16, "j": 12, "delta": "1", "cell": "edit", "answer": "350", "clean": "346", "edit_target": "350", "follows_edit": true, "follows_clean": false}
