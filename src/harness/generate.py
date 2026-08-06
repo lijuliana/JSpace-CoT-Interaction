@@ -30,8 +30,12 @@ def build_prompt(inst, condition, tokenizer, is_reasoning_model):
     elif condition == "cot":
         text += COT_SUFFIX
     msgs = [{"role": "user", "content": text}]
-    out = tokenizer.apply_chat_template(msgs, tokenize=False,
-                                        add_generation_prompt=True)
+    kw = {"tokenize": False, "add_generation_prompt": True}
+    if "qwen3" in getattr(tokenizer, "name_or_path", "").lower():
+        kw["enable_thinking"] = False  # no-think: isolate read-back from
+        # post-think re-solving (the r3 qwen3-4b thinking run showed the
+        # re-solve signature, random control reverting 0.66)
+    out = tokenizer.apply_chat_template(msgs, **kw)
     if condition == "direct" and is_reasoning_model:
         # suppress the think block; reported as secondary per plan.md.
         # some R1-distill template versions already open <think> in the
