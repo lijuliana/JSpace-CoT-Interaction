@@ -201,3 +201,7 @@ With the visible trace truncated so the checkpoint sentence is the only source o
 ## 2026-08-07, r3 depth sweep complete
 
 Third-value rate by depth. Qwen3-4B without thinking: 0.984 (d5), 0.974 (d20), 0.951 (d40), restore at or above 0.944, random 0.000, n_cond 103 to 113. Qwen2.5-7B: 0.890 (d5), 0.742 (d10), 0.707 (d20), 0.634 (d40), restore 1.000 down to 0.856, random at most 0.004. The planted-value effect persists to forty dependent steps in both models. The Qwen3-4B d10 thinking-mode cell is superseded by the queued no-think redo.
+
+## 2026-08-07, s1 slot algebra, qwen2.5-7b
+
+Two counters summed at the end; residual patches plant never-written values a-prime and b-prime at the two final written values. Answer equals the expected sum in each case: clean 0.943, a-prime with B 0.938, A with b-prime 0.945, a-prime with b-prime jointly 0.903 (at or above the 0.887 product of the single rates), matched-norm random patch leaves the clean answer at 0.955. n=120 items, 5 samples each. Slots are independent and compose.
