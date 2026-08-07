@@ -187,3 +187,9 @@ R4, boundary sweep (deep rendering, d=24, j in 1..20, n=150x2 seeds, api). Sonne
 R4b, anchor distance (prompt states the running value after op j-delta as a checkpoint, d=16, j=12). Flat for V3.2 (0.95 at every delta including 1) and Sonnet (0.78-0.89, no trend vs no-anchor). A stated equal value triggers no verification at any distance.
 
 Synthesis across r1/r4/r4b: verification of a written value happens only when the prompt generatively defines it (R1 shallow), not when it is implicitly derivable (R4) or explicitly stated as a checkpoint (R4b). The written trace is the default source of record; capacity gates whether the generative override can happen (small models never do it), training policy whether it does (70B does not despite capacity).
+
+## 2026-08-07, r3 cross-family verdict and controls
+
+Third-value patch at d=10, conditioned on items where the text edit was followed: Qwen2.5-7B restore 0.968 / third 0.742 / random 0.004 (n=93); Phi-3-medium 0.980 / 0.943 / 0.000 (n=102); OLMo-2-7B 0.884 / 0.930 / 0.000 (n=100). The slot mechanism holds in three unrelated model families, stronger outside Qwen than inside. R1-distill cells were invalidated by 400-token truncation of their long re-solves (70 percent unparseable); redos at 1500 tokens queued. Qwen3-4B thinking-mode confound fixed (no-think redo queued).
+
+V3.2 controls from the review fixes: offtarget edit (generative sentence present, edit two steps away) follows 0.958 versus deep 0.950 and on-target shallow 0.539, so verification is targeted at the prompt-defined value, not global re-solving. R4b v2 with the anchor as sole source of the checkpoint value: anchored and unanchored identical at every distance (0.89 to 0.94), so stated values are ignored even when they are the only verification path.
