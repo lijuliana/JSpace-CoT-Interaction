@@ -197,3 +197,7 @@ V3.2 controls from the review fixes: offtarget edit (generative sentence present
 ## 2026-08-07, r4b v2 sonnet: load-bearing stated values are consulted, and short traces lower default trust
 
 With the visible trace truncated so the checkpoint sentence is the only source of the pre-edit value, Sonnet reverts far more when the anchor is present, at matched trace length: reversion 0.564 vs 0.268 (bridge 2 ops), 0.780 vs 0.182 (4 ops), 0.549 vs 0.182 (8 ops), n about 295 per cell. V3.2 in the same design is unchanged by the anchor at every distance. Two revisions to the source-of-record law: stated values are consulted when they are load-bearing and the model is a strong verifier (Sonnet yes, V3.2 no), and the default trust in the trace grows with its length (unanchored reversion 0.902 with a one-line trace, 0.182 with eight lines). The verification hierarchy orders by capability: implicit derivability (no model), redundant stated values (no model), load-bearing stated values (Sonnet), generative definitions (Sonnet and V3.2).
+
+## 2026-08-07, r3 depth sweep complete
+
+Third-value rate by depth. Qwen3-4B without thinking: 0.984 (d5), 0.974 (d20), 0.951 (d40), restore at or above 0.944, random 0.000, n_cond 103 to 113. Qwen2.5-7B: 0.890 (d5), 0.742 (d10), 0.707 (d20), 0.634 (d40), restore 1.000 down to 0.856, random at most 0.004. The planted-value effect persists to forty dependent steps in both models. The Qwen3-4B d10 thinking-mode cell is superseded by the queued no-think redo.
