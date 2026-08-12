@@ -29,7 +29,12 @@ SOLVE_INSTR = ("\nSolve it by writing one line per step in the form "
 
 
 def converse(client, model_id, user_text, assistant_prefill, max_tokens):
-    msgs = [{"role": "user", "content": [{"text": user_text}]}]
+    user_content = [{"text": user_text}]
+    # Bedrock prompt caching (anthropic models only; needs ~1k+ token
+    # prefixes to actually cache, so this is a no-op on short prompts)
+    if "anthropic" in model_id:
+        user_content.append({"cachePoint": {"type": "default"}})
+    msgs = [{"role": "user", "content": user_content}]
     if assistant_prefill is not None:
         msgs.append({"role": "assistant",
                      "content": [{"text": assistant_prefill}]})
