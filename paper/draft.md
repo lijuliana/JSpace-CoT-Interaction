@@ -203,10 +203,32 @@ lens-readable subspace at that dose.
 
 ## 7. Related work
 
-[differentiation paragraph: 2606.29522 fine-tuned synthetic registers;
-2505.04955 value interventions without localization; 2602.15868 position
-paper; bounds 2404.15758, 2412.01113, 2603.01437; expressivity theory
-Merrill & Sabharwal, Li et al.]
+Expressivity theory shows that fixed-depth transformers can perform only
+bounded serial computation in one forward pass and that chain-of-thought
+length buys serial power (Merrill and Sabharwal 2024; Li et al. 2024;
+Feng et al. 2023). This predicts that long dependency chains must live in
+the generated text; it does not describe the storage or read mechanism,
+which is what we test.
+
+Faithfulness studies established that stated reasoning and internal
+computation can diverge (Turpin et al. 2023; Lanham et al. 2023), and
+probing work reads reasoning state from activations before or alongside
+the text (arXiv:2603.01437; arXiv:2412.01113). Filler-token results show
+models can compute through uninformative tokens (Pfau et al. 2024). These
+results bound our claim: they concern values a model can hold or
+regenerate internally, which our capacity and box-tracking results place
+outside the mechanism's scope.
+
+Closest to this work, arXiv:2606.29522 edits internal representations of
+scratchpad state and finds downstream following at 0.80 to 0.91, on a
+Qwen-7B fine-tuned for a synthetic task; arXiv:2505.04955 intervenes on
+value-storing chain-of-thought tokens in multiplication and dynamic
+programming tasks. We differ in testing unmodified pretrained models
+across three families, localizing the read to attention edges with
+matched controls, showing slot composition, and mapping when the written
+record is checked against the prompt. The framing of the chain of thought
+as external working memory appears without experiments in
+arXiv:2602.15868.
 
 ## 8. Discussion and limitations
 
