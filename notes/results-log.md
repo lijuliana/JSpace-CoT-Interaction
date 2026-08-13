@@ -209,3 +209,7 @@ Two counters summed at the end; residual patches plant never-written values a-pr
 ## 2026-08-07, s1 replication and corrected r2 controls
 
 S1 on Qwen3-4B: clean 0.970, single patches 0.888 and 0.930, joint 0.880 (product 0.826), random 0.952 unchanged; n=120. R2fix with word-boundary operand targeting and stratified random controls, n=600 per condition: random prompt operand 0.670 (7B) and 0.890 (4B), random earlier trace value 0.658 and 0.878, all at their baselines (0.643, 0.900); operand needed by the next step 0.028 and 0.038. The original vague random span partially degraded following by hitting meaningful tokens; the corrected controls show knockout specificity is exact: only the edited value's token matters for following the edit, and only the next operand matters for executing arithmetic.
+
+## 2026-08-12, r3b redos complete the mechanism table
+
+With 1500-token generation budgets the reasoning distills replicate: distill-7B restore 0.997 / third 0.763 / random 0.302 (n_cond=65), distill-14B 0.991 / 0.704 / 0.209 (n_cond=46). The elevated random reversion is post-think re-solving, which cannot produce the planted value, so the third-value rates are clean. Qwen3-4B without thinking at d10: restore 1.000 / third 0.996 / random 0.000 (n=106), superseding the thinking-mode cell. The planted-value result now spans six models in four families with third-value rates 0.70 to 0.996.
