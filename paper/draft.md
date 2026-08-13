@@ -119,19 +119,20 @@ intervals. Model revisions, prompts, and configs are in the appendices.
 
 | model | text edit followed | restore correct state | plant never-written value | random control | n |
 |---|---|---|---|---|---|
-| Qwen3-4B | 0.98 | 1.00 | 1.00 | 0.00 | 106 |
-| Qwen2.5-7B-Instruct | 0.85 | 0.97 | 0.74 | 0.00 | 93 |
-| Phi-3-medium | 0.94 | 0.98 | 0.94 | 0.00 | 102 |
-| OLMo-2-7B | 0.85 | 0.88 | 0.93 | 0.00 | 100 |
-| R1-distill-7B | 0.60 | 1.00 | 0.76 | 0.30 | 65 |
-| R1-distill-14B | 0.44 | 0.99 | 0.70 | 0.21 | 46 |
+| Qwen3-4B | 0.98 [0.95, 1.00] | 1.00 [1.00, 1.00] | 1.00 [0.99, 1.00] | 0.00 [0.00, 0.00] | 106 |
+| Qwen2.5-7B-Instruct | 0.85 [0.80, 0.90] | 0.97 [0.92, 1.00] | 0.74 [0.67, 0.81] | 0.00 [0.00, 0.01] | 93 |
+| Phi-3-medium | 0.94 [0.90, 0.98] | 0.98 [0.95, 1.00] | 0.94 [0.91, 0.97] | 0.00 [0.00, 0.00] | 102 |
+| OLMo-2-7B | 0.85 [0.79, 0.91] | 0.88 [0.82, 0.94] | 0.93 [0.88, 0.97] | 0.00 [0.00, 0.00] | 100 |
+| R1-distill-7B | 0.60 [0.53, 0.66] | 1.00 [0.99, 1.00] | 0.76 [0.68, 0.84] | 0.30 [0.22, 0.39] | 65 |
+| R1-distill-14B | 0.44 [0.36, 0.52] | 0.99 [0.98, 1.00] | 0.70 [0.61, 0.80] | 0.21 [0.13, 0.29] | 46 |
 
-Rates conditioned on items where the text edit was followed; ten-step
-chains. The distill models re-solve the problem after their reasoning
-phase, which elevates their random-control reversion (0.21 to 0.30);
-re-solving can only produce the correct answer, so their planted-value
-rates are unaffected by it. R1-distill-1.5B is excluded (12 usable items;
-random control exceeds the planted-value rate).
+Brackets are 95 percent bootstrap intervals; rates conditioned on items
+where the text edit was followed; ten-step chains. The distill models
+re-solve the problem after their reasoning phase, which elevates their
+random-control reversion; re-solving can only produce the correct answer,
+so their planted-value rates are unaffected by it. R1-distill-1.5B is
+excluded (12 usable items; random control exceeds the planted-value
+rate).
 
 Editing the visible text alone changes the final answer on most items
 (0.85 to 0.94 across the three instruct families at ten steps). The state
@@ -148,8 +149,10 @@ Two slots compose. In a task with two independent counters summed at the
 end, planting unwritten values at both final positions produces their sum
 (0.90 and 0.88 on Qwen2.5-7B and Qwen3-4B), matching the product of the
 single-slot rates, while the same-norm random patch leaves the clean
-answer in place (0.95). The model reports a number that exists nowhere in
-its input, assembled from two independently planted memories.
+answer in place (0.95). Mixed sums, in which one planted value is read
+and the other ignored, occur at 0.01, so the two positions are read
+independently. The model reports a number that exists nowhere in its
+input, assembled from two independently planted memories.
 
 ## 4. Read-back runs through attention to the value's token
 
