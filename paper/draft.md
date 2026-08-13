@@ -18,8 +18,8 @@ model reports their sum, which appears nowhere in its input, in 88 percent
 of cases. The written token's position therefore behaves as memory that
 later computation reads through attention. Models consult this memory by
 default: edited values are followed even when the correct value is one
-operation away in the prompt, and what evidence can override the written
-record forms a hierarchy that varies by model. DeepSeek V3.2 rederives a
+operation away in the prompt, and which prompt evidence can override the
+written record differs by model. DeepSeek V3.2 rederives a
 value only when the prompt itself defines it (reversion 0.43 versus 0.05
 for a stated checkpoint it would only need to copy); Claude Sonnet 4.5
 also uses stated checkpoints when they are the only source (reversion
@@ -183,7 +183,10 @@ correct value one operation away changes little by itself: V3.2 follows
 edits at 0.85 even when the edited value is one step from the prompt's
 starting number, and Sonnet follows at 0.98 in the same position.
 
-What matters is the kind of evidence, and models differ sharply.
+What matters is the kind of evidence, and models differ sharply. The
+conditions below come from separate experiments with different trace
+lengths and item sets; each within-experiment contrast is controlled, and
+we do not claim a single ordered scale across them.
 
 DeepSeek V3.2 reverts only when the prompt generatively defines the
 value (a sentence gives the two numbers whose sum becomes the running
@@ -226,6 +229,16 @@ length buys serial power (Merrill and Sabharwal 2024; Li et al. 2024;
 Feng et al. 2023). This predicts that long dependency chains must live in
 the generated text; it does not describe the storage or read mechanism,
 which is what we test.
+
+Our interventions build on causal tracing and activation patching
+(Meng et al. 2022) and interchange interventions (Geiger et al. 2021);
+the attention block is related to attention knockout in circuit analysis
+and to attention-flow perturbation on reasoning traces (arXiv:2606.10646),
+which flips answers by perturbing flow hubs; we add value-specific edges
+with matched-token-type controls and the illegible-token dissociation.
+Hidden-state patching of chain-of-thought representations appears in
+arXiv:2604.23351, and Self-Notes (Lanchantin et al. 2023) studies writing
+as memory behaviorally.
 
 Faithfulness studies established that stated reasoning and internal
 computation can diverge (Turpin et al. 2023; Lanham et al. 2023), and
