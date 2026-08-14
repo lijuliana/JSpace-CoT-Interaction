@@ -145,6 +145,16 @@ effect is carried by the value content of the state, not by perturbation
 size. The effect persists across depth: Qwen3-4B follows the planted
 value at 0.984, 0.974, 0.951 for chains of five, twenty, and forty steps.
 
+The mechanism is not specific to the arithmetic template. On a
+natural-language state task, in which a story character's count of
+marbles or stamps changes through varied narrative events and the trace
+lines vary in phrasing, the full pattern replicates: text edits are
+followed at 0.70 and 0.74 (Qwen3-4B, Phi-3-medium), restoring the
+correct state returns the answer to correct at 0.89 and 0.94, a planted
+never-written value is followed at 0.83 [0.75, 0.90] and 0.86 [0.79,
+0.92], and the norm-matched random control is 0.00 in both (n=86 and 89
+conditioned items).
+
 Two slots compose. In a task with two independent counters summed at the
 end, planting unwritten values at both final positions produces their sum
 (0.90 and 0.88 on Qwen2.5-7B and Qwen3-4B), matching the product of the
@@ -159,16 +169,21 @@ input, assembled from two independently planted memories.
 [Figure: knockout bars]
 
 Blocking attention from post-edit positions to the edited value's tokens
-drops following to exactly 0.000 on both models tested (baselines 0.643
-and 0.900, n=600 per condition). The same block applied to the adjacent
+collapses following on every model tested, across three families:
+0.643 to 0.000 (Qwen2.5-7B), 0.900 to 0.000 (Qwen3-4B), 0.880 to 0.000
+(Phi-3-medium), 0.333 to 0.005 (OLMo-2-7B, whose baseline is low in this
+prompt format but whose contrast is intact); n=600 per condition. The
+same collapse holds on the natural-language task (0.730 to 0.007 on
+Qwen3-4B, n=300). The same block applied to the adjacent
 words on the same line, to a random operand in the prompt, or to an
 earlier step's written value leaves following at baseline. Blocking the
 operand that the next step needs collapses arithmetic itself (following
 0.03, with answers matching neither the edited nor the correct value).
 Replacing the value's characters with dots, without touching attention,
-also removes following, but differently: the model reconstructs the value
-from the previous line and returns the correct answer 60 to 73 percent of
-the time. Attention to the written token is how the value normally moves
+also removes following, but differently: Qwen models reconstruct the
+value from the previous line and return the correct answer 60 to 73
+percent of the time, while Phi-3-medium does not recover (0.00), so the
+fallback path exists in some models and not others. Attention to the written token is how the value normally moves
 forward; when the token is unreadable, the model can rebuild it, and by
 default it does not.
 
@@ -269,7 +284,8 @@ and this becomes more true as models get stronger. On values a model can
 regenerate, and for models trained to check, the trace can silently
 diverge from the computation.
 
-Limitations: tasks are arithmetic chains, chosen for exact ground truth;
+Limitations: tasks are arithmetic and narrative-count chains, chosen for
+exact ground truth; richer state (code, multi-entity plans) is untested;
 the white-box evidence is at 4B to 14B; frontier evidence is behavioral;
 the verification-policy differences are described for four models and are
 not a law; the patch overwrites the full residual band rather than an
