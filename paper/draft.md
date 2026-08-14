@@ -5,15 +5,16 @@
 When a language model writes an intermediate value during multi-step
 reasoning, does the written token carry the computation, or is it a
 commentary on work done elsewhere? We answer this causally on arithmetic
-chain tasks where every intermediate value has known ground truth.
-Planting a value the model never wrote into the residual-stream state at a
-written token makes the final answer track that value in 74 to 98 percent
-of cases across three unrelated model families (Qwen, Phi, OLMo) and
-chain lengths up to forty steps, while a norm-matched random perturbation
-moves answers in under 1 percent. Blocking attention from later positions
-to the written value's token drops edit-following from 0.90 to 0.00, while
-blocking a neighboring token, a random prompt token, or an earlier written
-value changes nothing. Two values planted in two positions compose: the
+and narrative state-tracking tasks where every intermediate value has
+known ground truth. Planting a value the model never wrote into the
+residual-stream state at a written token makes the final answer track
+that value in 74 to 100 percent of cases across three unrelated model
+families (Qwen, Phi, OLMo), chain lengths up to forty steps, and both
+task formats, while a norm-matched random perturbation moves answers in
+under 1 percent. Blocking attention from later positions to the written
+value's token drops edit-following to zero on four models in three
+families, while blocking a neighboring token, a random prompt token, or
+an earlier written value changes nothing. Two values planted in two positions compose: the
 model reports their sum, which appears nowhere in its input, in 88 percent
 of cases. The written token's position therefore behaves as memory that
 later computation reads through attention. Models consult this memory by
