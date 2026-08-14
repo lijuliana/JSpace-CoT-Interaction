@@ -38,6 +38,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from harness.r1_recompute import make_item, forward_from, final_answer  # noqa: E402
+from tasks import nl_state  # noqa: E402
 
 KNOCK = contextvars.ContextVar("knock", default=None)  # (key_ixs, from_q)
 _orig_sdpa = F.scaled_dot_product_attention
@@ -120,6 +121,7 @@ def main():
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2])
     ap.add_argument("--max-new", type=int, default=300)
     ap.add_argument("--temp", type=float, default=0.6)
+    ap.add_argument("--task", default="arith", choices=["arith", "nl"])
     ap.add_argument("--conditions", nargs="+",
                     default=["none", "value", "neighbor", "operand",
                              "random_prompt", "random_trace", "dots"])
@@ -136,14 +138,21 @@ def main():
     for seed in args.seeds:
         rng = random.Random(2000 + seed)
         for ix in range(args.n):
-            it = make_item(rng, args.d, rng.randint(4, 7))
+            if args.task == "nl":
+                it = nl_state.make_item(rng, args.d, rng.randint(4, 7))
+            else:
+                it = make_item(rng, args.d, rng.randint(4, 7))
             delta = rng.choice([x for x in range(-9, 10) if x != 0])
             j = it["j"]
             vj_bad = it["vals"][j] + delta
-            tgt = forward_from(it, j, vj_bad)
-            lines = it["lines"][:j]
-            lines[-1] = f"After step {j} the value is {vj_bad}."
-            prefill = "\n".join(lines) + "\n"
+            if args.task == "nl":
+                tgt = nl_state.forward_from(it, j, vj_bad)
+                prefill = nl_state.prefix(it, vj_bad)
+            else:
+                tgt = forward_from(it, j, vj_bad)
+                lines = it["lines"][:j]
+                lines[-1] = f"After step {j} the value is {vj_bad}."
+                prefill = "\n".join(lines) + "\n"
             text = build_text(tok, args.model, it["deep_prompt"], prefill)
             val_span = token_span(tok, text, str(vj_bad))
             if not val_span:
@@ -154,20 +163,28 @@ def main():
                 if cond == "value":
                     kixs = val_span
                 elif cond == "neighbor":
-                    kixs = token_span(tok, text, "value is", -1)
+                    if args.task == "nl":
+                        kixs = list(range(max(0, min(val_span) - len(val_span)),
+                                          min(val_span)))
+                    else:
+                        kixs = token_span(tok, text, "value is", -1)
                 elif cond == "operand":
                     c = it["deltas"][j] if j < len(it["deltas"]) \
                         else it["deltas"][-1]
-                    entry = (f"({j+1}) "
-                             f"{'add' if c >= 0 else 'subtract'} {abs(c)}")
-                    m = re.search(re.escape(entry), text)
-                    if m:
-                        sub = str(abs(c))
-                        cs = text.rfind(sub, m.start(), m.end())
-                        enc = tok(text, return_offsets_mapping=True)
-                        kixs = [i for i, (a, b) in
-                                enumerate(enc.offset_mapping)
-                                if a < cs + len(sub) and b > cs]
+                    if args.task == "nl":
+                        # the next event's amount, first occurrence (prompt)
+                        kixs = token_span(tok, text, str(abs(c)), 0)
+                    else:
+                        entry = (f"({j+1}) "
+                                 f"{'add' if c >= 0 else 'subtract'} {abs(c)}")
+                        m = re.search(re.escape(entry), text)
+                        if m:
+                            sub = str(abs(c))
+                            cs = text.rfind(sub, m.start(), m.end())
+                            enc = tok(text, return_offsets_mapping=True)
+                            kixs = [i for i, (a, b) in
+                                    enumerate(enc.offset_mapping)
+                                    if a < cs + len(sub) and b > cs]
                 elif cond == "random_prompt":
                     # a random op-list amount in the prompt, ops before j
                     jj = rng.randint(0, max(0, j - 2))

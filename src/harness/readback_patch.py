@@ -240,8 +240,9 @@ def main():
             patched, _ = continue_from(model, tok, corr_ids.input_ids,
                                        base_patch, args.max_new, args.samples)
         with rand_patch:
-            randed, _ = continue_from(model, tok, corr_ids.input_ids,
-                                      rand_patch, args.max_new, args.samples)
+            randed, rand_texts = continue_from(
+                model, tok, corr_ids.input_ids, rand_patch, args.max_new,
+                args.samples)
         with swap_patch:
             swapped, _ = continue_from(model, tok, corr_ids.input_ids,
                                        swap_patch, args.max_new, args.samples)
@@ -264,6 +265,8 @@ def main():
             "swap_follows_swap": frac(swapped, swap_ans),
             "swap_follows_clean": frac(swapped, clean_ans),
             "swap_follows_corruption": frac(swapped, corr_ans),
+            "corr_text0": corr_texts[0][:400],
+            "rand_text0": rand_texts[0][:400],
         }
         if args.debug:
             rec["corr_text_sample"] = corr_texts[0][:600]
