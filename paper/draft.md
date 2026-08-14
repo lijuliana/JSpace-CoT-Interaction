@@ -130,8 +130,11 @@ intervals. Model revisions, prompts, and configs are in the appendices.
 Brackets are 95 percent bootstrap intervals; rates conditioned on items
 where the text edit was followed; ten-step chains. The distill models
 re-solve the problem after their reasoning phase, which elevates their
-random-control reversion; re-solving can only produce the correct answer,
-so their planted-value rates are unaffected by it. R1-distill-1.5B is
+random-control reversion: in a text-logged sample, all 24 of 24 reverting
+random-control continuations re-derive from the prompt's starting value
+after the reasoning phase, and none correct the value in place.
+Re-solving can only produce the correct answer, so their planted-value
+rates are unaffected by it. R1-distill-1.5B is
 excluded (12 usable items; random control exceeds the planted-value
 rate).
 
@@ -175,7 +178,8 @@ collapses following on every model tested, across three families:
 (Phi-3-medium), 0.333 to 0.005 (OLMo-2-7B, whose baseline is low in this
 prompt format but whose contrast is intact); n=600 per condition. The
 same collapse holds on the natural-language task (0.730 to 0.007 on
-Qwen3-4B, n=300). The same block applied to the adjacent
+Qwen3-4B, 0.720 to 0.003 on Phi-3-medium; controls at baseline; n=300
+per condition). The same block applied to the adjacent
 words on the same line, to a random operand in the prompt, or to an
 earlier step's written value leaves following at baseline. Blocking the
 operand that the next step needs collapses arithmetic itself (following
