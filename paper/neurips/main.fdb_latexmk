@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1787776958.22627 "main.aux" "main.bbl" "main" 1787776958.96249 0
+["bibtex main"] 1787776958.22627 "main.aux" "main.bbl" "main" 1787778378.91386 0
   "./references.bib" 1787770920.65558 3520 6c5d6b8fa760f1fd7de5b284a852c06c ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "main.aux" 1787776958.75402 7253 64b86c5f4df9dc54bb29500de2d840ff "pdflatex"
+  "main.aux" 1787778378.70579 7253 64b86c5f4df9dc54bb29500de2d840ff "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1787776958.33581 "/Users/julianali/Desktop/JSpace-CoT-Interaction/paper/neurips/main.tex" "main.pdf" "main" 1787776958.9626 0
-  "/Users/julianali/Desktop/JSpace-CoT-Interaction/paper/neurips/main.tex" 1787776956.93356 21374 ca706ed55097ca41e70cd90c6d3ef7de ""
+["pdflatex"] 1787778378.26006 "/Users/julianali/Desktop/JSpace-CoT-Interaction/paper/neurips/main.tex" "main.pdf" "main" 1787778378.91398 0
+  "/Users/julianali/Desktop/JSpace-CoT-Interaction/paper/neurips/main.tex" 1787778377.91331 21762 128fec868e7c4d33da0386a2c50d74c1 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -116,10 +116,10 @@
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "figures/f1_protocol.pdf" 1787731934.40328 20134 eeeac8f97f588d3386a1433fa322fa5b ""
   "figures/f3_knockout.pdf" 1787731934.40414 15176 17f9d009bcae2e0db8847eadedf6bda2 ""
-  "main.aux" 1787776958.75402 7253 64b86c5f4df9dc54bb29500de2d840ff "pdflatex"
+  "main.aux" 1787778378.70579 7253 64b86c5f4df9dc54bb29500de2d840ff "pdflatex"
   "main.bbl" 1787776958.33175 3214 5dc70522be5e005c881174dae1098d13 "bibtex main"
-  "main.out" 1787776958.7549 1881 423a07033851e4d104aa7b9893f74571 "pdflatex"
-  "main.tex" 1787776956.93356 21374 ca706ed55097ca41e70cd90c6d3ef7de ""
+  "main.out" 1787778378.70631 1881 423a07033851e4d104aa7b9893f74571 "pdflatex"
+  "main.tex" 1787778377.91331 21762 128fec868e7c4d33da0386a2c50d74c1 ""
   "neurips_2025.sty" 1787731934.39924 11625 aa8b84b0e1cfdd9d2dff0cc280140d5d ""
   (generated)
   "main.aux"
