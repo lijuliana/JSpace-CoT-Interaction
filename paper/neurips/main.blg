@@ -1,34 +1,46 @@
-This is BibTeX, Version 0.99d
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: plainnat.bst
 Database file #1: references.bib
-You're missing a field name---line 69 of file references.bib
- : @article{shih2026registers, 
- :                             % VERIFY
-I'm skipping whatever remains of this entry
-You're missing a field name---line 76 of file references.bib
- : @article{zhu2025variables, 
- :                            % VERIFY
-I'm skipping whatever remains of this entry
-You're missing a field name---line 83 of file references.bib
- : @article{flowtracer2026, 
- :                          % VERIFY
-I'm skipping whatever remains of this entry
-You're missing a field name---line 90 of file references.bib
- : @article{hiddenstates2026, 
- :                            % VERIFY
-I'm skipping whatever remains of this entry
-Warning--to sort, need author or key in shih2026registers
-Warning--to sort, need author or key in zhu2025variables
-Warning--empty author in shih2026registers
-Warning--empty title in shih2026registers
-Warning--empty journal in shih2026registers
-Warning--empty year in shih2026registers
-Warning--empty year in shih2026registers
-Warning--empty author in zhu2025variables
-Warning--empty title in zhu2025variables
-Warning--empty journal in zhu2025variables
-Warning--empty year in zhu2025variables
-Warning--empty year in zhu2025variables
-(There were 4 error messages)
+You've used 10 entries,
+            2773 wiz_defined-function locations,
+            641 strings with 6509 characters,
+and the built_in function-call counts, 4361 in all, are:
+= -- 354
+> -- 297
+< -- 5
++ -- 100
+- -- 90
+* -- 314
+:= -- 692
+add.period$ -- 36
+call.type$ -- 10
+change.case$ -- 57
+chr.to.int$ -- 10
+cite$ -- 20
+duplicate$ -- 219
+empty$ -- 366
+format.name$ -- 107
+if$ -- 912
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 10
+newline$ -- 64
+num.names$ -- 40
+pop$ -- 135
+preamble$ -- 1
+purify$ -- 47
+quote$ -- 0
+skip$ -- 158
+stack$ -- 0
+substring$ -- 20
+swap$ -- 16
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 110
+warning$ -- 0
+while$ -- 30
+width$ -- 0
+write$ -- 139
