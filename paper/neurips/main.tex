@@ -9,7 +9,6 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{xcolor}
-\usepackage{multicol}
 
 \title{Working Memory in the Chain of Thought\\Is Not Captured by J-Space}
 
@@ -78,7 +77,7 @@ Table~\ref{tab:patch} decomposes the effect of editing a written value. Restorin
 \begin{table}[t]
 \centering
 \small
-\caption{State patch on arithmetic chains at ten steps. Rates are conditioned on items where the text edit was followed (first column), so cross-model comparison of later columns should account for that rate. Brackets are 95 percent bootstrap intervals. The two reasoning-distilled models re-solve the problem after their reasoning phase, which raises their random-control reversion; in a logged sample every reverting continuation re-derives from the problem's starting value rather than correcting in place, and re-derivation can only produce the correct answer, so the planted-value column is unaffected.}
+\caption{State patch on arithmetic chains at ten steps. Rates are conditioned on items where the text edit was followed (first column); brackets are 95 percent bootstrap intervals. The reasoning-distilled models re-solve after their reasoning phase, raising their random-control reversion; every logged reverting continuation re-derives from the starting value, and re-derivation can only produce the correct answer, so the planted-value column is unaffected.}
 \label{tab:patch}
 \begin{tabular}{lccccc}
 \toprule
@@ -113,7 +112,7 @@ Blocking attention from all post-edit positions to the edited value's position c
 \begin{table}[t]
 \centering
 \small
-\caption{Attention block on arithmetic chains: rate at which the answer follows the edited value. OLMo-2-7B continues this format less reliably (low no-block rate) and shows the same contrast.}
+\caption{Attention block on arithmetic chains: rate at which the answer follows the edited value. OLMo-2-7B has a low no-block rate in this format with the same contrast.}
 \label{tab:knockout}
 \begin{tabular}{lccccc}
 \toprule
@@ -153,10 +152,8 @@ Tasks are numeric and count state tracking, so our claims concern serial task st
 Serial reasoning state outgrows a language model's internal workspace within one to two dependent steps at every scale tested, writing begins at no threshold, and no intervention shifts state between the workspace and the trace, so the chain of thought is working memory rather than overflow. It works as compositional registers: settable by intervention, retrieved through attention in the middle layers, independently addressable, and decisive for the answer. For oversight the implication cuts both ways: the written positions are a causally used memory channel, and identical text can carry different stored values, so trace monitoring observes the channel while verifying the state behind it remains a separate problem.
 
 {\footnotesize
-\begin{multicols}{2}
 \bibliographystyle{plainnat}
 \bibliography{references}
-\end{multicols}
 }
 
 \end{document}
