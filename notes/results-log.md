@@ -213,3 +213,9 @@ S1 on Qwen3-4B: clean 0.970, single patches 0.888 and 0.930, joint 0.880 (produc
 ## 2026-08-12, r3b redos complete the mechanism table
 
 With 1500-token generation budgets the reasoning distills replicate: distill-7B restore 0.997 / third 0.763 / random 0.302 (n_cond=65), distill-14B 0.991 / 0.704 / 0.209 (n_cond=46). The elevated random reversion is post-think re-solving, which cannot produce the planted value, so the third-value rates are clean. Qwen3-4B without thinking at d10: restore 1.000 / third 0.996 / random 0.000 (n=106), superseding the thinking-mode cell. The planted-value result now spans six models in four families with third-value rates 0.70 to 0.996.
+
+## 2026-08-26, peer-review round 2 (4 reviewers) + coherence analysis
+
+Four independent reviewers, unanimous Major revision; core causal result judged credible and controlled. Blocking concerns: (1) patch band and attention mask never layer-localized, so the "read through attention" claim is not yet distinguishable from deleting the token's whole contribution; (2) "holds more for stronger models" omits Llama-70B (0.97, breaks monotonicity) and mixes white-box with behavioral populations. Writing-fixable: novelty framing vs 2606.29522/2505.04955, composition numbers, R1-distill 0.60-vs-0.42, Jacobian lens definition, conditioned-rate caveat, resampling unit, availability statement, bare-ID citations.
+
+Coherence analysis (concern charlie #4), from existing r2 data: under value-token knockout the unparseable rate stays 0.000 (0.040 for OLMo, equal to its baseline), while follows-edit goes to 0 and follows-clean stays ~0, so the answer is a parseable number that is neither the edit nor the clean value. The model continues fluently and computes forward from a value it can no longer retrieve; the knockout removes the specific value, it does not break generation.

@@ -1,0 +1,15 @@
+concern,alfa,bravo,charlie,delta
+Mechanistic claim not layer-localized (patch band / full-depth mask never swept),1,1,1,1
+"Strength-scaling claim omits Llama, mixes white-box and behavioral populations",0,1,1,1
+Novelty framing overstates priority vs 2606.29522 / 2505.04955,1,0,1,0
+"No code/data availability, decoding params, or patch band in main text",0,1,1,1
+Composition numbers unverifiable / inconsistent,1,0,0,1
+R1-distill-7B 0.60 vs 0.42 unreconciled,0,1,1,1
+Jacobian lens undefined / uncited,1,0,1,1
+Section 6 scope entirely unquantified,0,1,1,0
+"Distill 24/24 is a convenience sample, no denominator",0,1,1,0
+Conditioned-rate comparability across models,0,0,1,1
+No multiple-comparison correction; resampling unit unclear,1,1,1,1
+Knockout coherence confound (broke the model vs blocked retrieval),0,0,1,0
+Only norm-matched random control; no structured-wrong control,0,1,0,0
+Closest prior art cited by bare arXiv ID only,1,0,0,0
