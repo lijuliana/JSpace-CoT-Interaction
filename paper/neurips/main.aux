@@ -1,0 +1,58 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{merrill2024expressive}
+\citation{lanchantin2023selfnotes}
+\citation{zhu2025variables}
+\citation{shih2026registers}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Tasks and protocol}{2}{section.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The edit-and-continue protocol. A correct worked solution is truncated after one edited value line and the model continues. Three interventions target the edited value: changing the visible token, overwriting the hidden state at that position with the state a different value would have produced, and blocking attention from later positions to that position. The readout is whether the final answer follows the planted value.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:protocol}{{1}{3}{The edit-and-continue protocol. A correct worked solution is truncated after one edited value line and the model continues. Three interventions target the edited value: changing the visible token, overwriting the hidden state at that position with the state a different value would have produced, and blocking attention from later positions to that position. The readout is whether the final answer follows the planted value}{figure.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces State patch on arithmetic chains at ten steps. Rates are conditioned on items where the text edit was followed (first column), so cross-model comparison of later columns should account for that rate. Brackets are 95 percent bootstrap intervals. The two reasoning-distilled models re-solve the problem after their reasoning phase, which raises their random-control reversion; in a logged sample every reverting continuation re-derives from the problem's starting value rather than correcting in place, and re-derivation can only produce the correct answer, so the planted-value column is unaffected.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:patch}{{1}{3}{State patch on arithmetic chains at ten steps. Rates are conditioned on items where the text edit was followed (first column), so cross-model comparison of later columns should account for that rate. Brackets are 95 percent bootstrap intervals. The two reasoning-distilled models re-solve the problem after their reasoning phase, which raises their random-control reversion; in a logged sample every reverting continuation re-derives from the problem's starting value rather than correcting in place, and re-derivation can only produce the correct answer, so the planted-value column is unaffected}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}The written position holds a settable value register}{3}{section.3}\protected@file@percent }
+\newlabel{sec:register}{{3}{3}{The written position holds a settable value register}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{The result is a property of written state, not of one template.}{3}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Written positions are independently addressable.}{3}{section*.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Rate at which the answer follows the edited value under each blocked attention target. Blocking the value's own position collapses following on every model; matched control blocks do not. Error bars are 95 percent bootstrap intervals.}}{4}{figure.2}\protected@file@percent }
+\newlabel{fig:knockout}{{2}{4}{Rate at which the answer follows the edited value under each blocked attention target. Blocking the value's own position collapses following on every model; matched control blocks do not. Error bars are 95 percent bootstrap intervals}{figure.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Attention block on arithmetic chains: rate at which the answer follows the edited value. OLMo-2-7B continues this format less reliably (low no-block rate) and shows the same contrast.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:knockout}{{2}{4}{Attention block on arithmetic chains: rate at which the answer follows the edited value. OLMo-2-7B continues this format less reliably (low no-block rate) and shows the same contrast}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Retrieval runs through attention to the written position}{4}{section.4}\protected@file@percent }
+\newlabel{sec:read}{{4}{4}{Retrieval runs through attention to the written position}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{The block removes the value, not the ability to generate.}{4}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The retrieval happens before two-thirds depth.}{4}{section*.4}\protected@file@percent }
+\citation{gurnee2026jspace}
+\citation{gurnee2026jspace}
+\citation{meng2022rome}
+\citation{geiger2021causal}
+\citation{heimersheim2024patching}
+\citation{merrill2024expressive}
+\citation{lanchantin2023selfnotes}
+\citation{zhu2025variables,shih2026registers}
+\citation{turpin2023unfaithful,lanham2023faithfulness}
+\citation{pfau2024dot}
+\@writefile{toc}{\contentsline {paragraph}{Reading is the preferred path, not the only one.}{5}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}What a calibrated J-space ablation does and does not disturb}{5}{section.5}\protected@file@percent }
+\newlabel{sec:jspace}{{5}{5}{What a calibrated J-space ablation does and does not disturb}{section.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}When the written value is read versus recomputed}{5}{section.6}\protected@file@percent }
+\newlabel{sec:check}{{6}{5}{When the written value is read versus recomputed}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Related work}{5}{section.7}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\bibcite{geiger2021causal}{{1}{2021}{{Geiger et~al.}}{{Geiger, Lu, Icard, and Potts}}}
+\bibcite{gurnee2026jspace}{{2}{2026}{{Gurnee et~al.}}{{}}}
+\bibcite{heimersheim2024patching}{{3}{2024}{{Heimersheim and Nanda}}{{}}}
+\bibcite{lanchantin2023selfnotes}{{4}{2023}{{Lanchantin et~al.}}{{Lanchantin, Toshniwal, Weston, Szlam, and Sukhbaatar}}}
+\bibcite{lanham2023faithfulness}{{5}{2023}{{Lanham et~al.}}{{}}}
+\bibcite{meng2022rome}{{6}{2022}{{Meng et~al.}}{{Meng, Bau, Andonian, and Belinkov}}}
+\bibcite{merrill2024expressive}{{7}{2024}{{Merrill and Sabharwal}}{{}}}
+\bibcite{pfau2024dot}{{8}{2024}{{Pfau et~al.}}{{Pfau, Merrill, and Bowman}}}
+\bibcite{shih2026registers}{{9}{2026}{{Shih et~al.}}{{}}}
+\bibcite{turpin2023unfaithful}{{10}{2023}{{Turpin et~al.}}{{Turpin, Michael, Perez, and Bowman}}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Limitations}{6}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{6}{section.9}\protected@file@percent }
+\bibcite{zhu2025variables}{{11}{2025}{{Zhu et~al.}}{{}}}
+\gdef \@abspage@last{7}
