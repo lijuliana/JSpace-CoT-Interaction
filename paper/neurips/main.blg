@@ -1,0 +1,34 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+You're missing a field name---line 69 of file references.bib
+ : @article{shih2026registers, 
+ :                             % VERIFY
+I'm skipping whatever remains of this entry
+You're missing a field name---line 76 of file references.bib
+ : @article{zhu2025variables, 
+ :                            % VERIFY
+I'm skipping whatever remains of this entry
+You're missing a field name---line 83 of file references.bib
+ : @article{flowtracer2026, 
+ :                          % VERIFY
+I'm skipping whatever remains of this entry
+You're missing a field name---line 90 of file references.bib
+ : @article{hiddenstates2026, 
+ :                            % VERIFY
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in shih2026registers
+Warning--to sort, need author or key in zhu2025variables
+Warning--empty author in shih2026registers
+Warning--empty title in shih2026registers
+Warning--empty journal in shih2026registers
+Warning--empty year in shih2026registers
+Warning--empty year in shih2026registers
+Warning--empty author in zhu2025variables
+Warning--empty title in zhu2025variables
+Warning--empty journal in zhu2025variables
+Warning--empty year in zhu2025variables
+Warning--empty year in zhu2025variables
+(There were 4 error messages)
