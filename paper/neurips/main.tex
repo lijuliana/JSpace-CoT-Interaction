@@ -30,7 +30,7 @@ Unmodified pretrained language models use the hidden states at written intermedi
 
 When a pretrained language model tracks serial state through a chain of thought, the hidden state at each written value's token is a memory register: settable by intervention, retrieved through attention to that position, and independently addressable, with the stored value rather than the visible text determining the answer. We establish this with causal interventions on six unmodified models from four families (Qwen, Phi, OLMo, DeepSeek-R1-Distill), on two task families with exact ground truth for every intermediate value, and we locate the retrieval in the network's depth.
 
-Prior work anticipated pieces of this picture without establishing the mechanism in the wild. Expressivity theory treats generated tokens as the recurrent state of an otherwise fixed-depth computation~\citep{merrill2024expressive}, Self-Notes demonstrates writing as working memory behaviorally~\citep{lanchantin2023selfnotes}, \citet{zhu2025variables} show that intermediate-result tokens store mutable values on multiplication and dynamic-programming tasks, and \citet{shih2026registers} patch written scratchpad representations on a fine-tuned model. None of these show that unmodified pretrained models do this natively, identify the retrieval route, test whether written stores compose, or map when a model reads a written value rather than recomputing it. Those four questions are this paper's results:
+Prior work anticipated pieces of this picture without establishing the mechanism in the wild. Expressivity theory treats generated tokens as the recurrent state of an otherwise fixed-depth computation~\citep{merrill2024expressive}, Self-Notes demonstrates writing as working memory behaviorally~\citep{lanchantin2023selfnotes}, \citet{zhu2025variables} show that intermediate-result tokens store mutable values on multiplication and dynamic-programming tasks, and \citet{shih2026registers} patch written scratchpad representations on a fine-tuned model. None of these show that unmodified pretrained models do this natively, identify the retrieval route, test whether written stores compose, or map when a model reads a written value rather than recomputing it. These questions are this paper's results:
 
 \begin{enumerate}
 \item \textbf{The hidden state at a written value's position is a value register, natively.} Planting a never-written value into the residual stream at that position, text unchanged, redirects the answer to the planted value at 0.70 to 1.00 across all six models; restoring the correct state under corrupted text reverts the answer at 0.88 to 1.00; size-matched random noise redirects at most 0.01 on instruction-tuned models (Section~\ref{sec:register}).
@@ -40,11 +40,9 @@ Prior work anticipated pieces of this picture without establishing the mechanism
 \item \textbf{Reading is the default; recomputation is model-specific.} Models follow an edited written value even when the prompt implies the correct one. DeepSeek V3.2 recomputes only values the prompt generatively defines, and precisely those; Claude Sonnet 4.5 also uses stated checkpoints; Llama 3.3 70B recomputes almost nothing despite solving the same chains from scratch (Section~\ref{sec:check}).
 \end{enumerate}
 
-The picture these results support is specific: on serial state-tracking tasks, pretrained models spontaneously write task state into the trace and retrieve it from the written positions through attention, and the stored values behave as independently settable registers. The visible token and the stored state normally agree, and our interventions show they can be dissociated: the same text can carry different hidden values with different downstream consequences, which qualifies what reading a trace can establish about the computation behind it.
-
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.95\linewidth]{figures/f1_protocol.pdf}
+\includegraphics[width=0.78\linewidth]{figures/f1_protocol.pdf}
 \caption{The edit-and-continue protocol. A correct worked solution is truncated after one edited value line and the model continues. Three interventions target the edited value: changing the visible token, overwriting the hidden state at that position with the state a different value would have produced, and blocking attention from later positions to that position. The readout is whether the final answer follows the planted value.}
 \label{fig:protocol}
 \end{figure}
@@ -53,7 +51,7 @@ The picture these results support is specific: on serial state-tracking tasks, p
 
 Both task families give exact ground truth for every intermediate value, so the downstream effect of any edit is computable. Arithmetic chains start from a three-digit number and apply $d$ signed two-digit additions and subtractions. Narrative state-tracking problems describe a character whose count of an item changes through varied events, with varied names, items, verbs, and sentence forms. In both, the model writes one line per step giving the running value.
 
-The protocol takes a correct worked solution, changes the value at one step $j$, truncates immediately after the edited line, and lets the model continue (Figure~\ref{fig:protocol}). A no-edit truncation measures the sampling noise floor, which is 0.00 throughout. Generation uses temperature 0.6 and top-$p$ 0.95 with five samples per item; answers are parsed from a fixed final-line format and unparseable outputs are counted separately. Reported intervals are 95 percent bootstrap intervals resampling items; we report intervals rather than significance tests, and the effects that carry the argument exceed their controls by margins far larger than the intervals. White-box experiments use Qwen3-4B, Qwen2.5-7B-Instruct, Phi-3-medium, OLMo-2-7B-Instruct, and DeepSeek-R1-Distill-Qwen 7B and 14B; frontier models (DeepSeek V3.2, Claude Sonnet 4.5, Llama 3.3 70B) are tested behaviorally through assistant prefill. Model revisions, prompts, layer bands, and per-run configurations are in the appendix; code and data will be released.
+The protocol takes a correct worked solution, changes the value at one step $j$, truncates immediately after the edited line, and lets the model continue (Figure~\ref{fig:protocol}). A no-edit truncation measures the sampling noise floor, 0.00 throughout. Generation uses temperature 0.6 and top-$p$ 0.95 with five samples per item; unparseable outputs are counted separately. Intervals are 95 percent bootstrap intervals over items; the effects that carry the argument exceed their controls by far larger margins. White-box experiments use Qwen3-4B, Qwen2.5-7B-Instruct, Phi-3-medium, OLMo-2-7B-Instruct, and DeepSeek-R1-Distill-Qwen 7B and 14B; frontier models (DeepSeek V3.2, Claude Sonnet 4.5, Llama 3.3 70B) are tested behaviorally through assistant prefill. Model revisions, prompts, layer bands, and configurations are in the appendix; code and data will be released.
 
 \section{The written position holds a settable value register}
 \label{sec:register}
@@ -90,7 +88,7 @@ Blocking attention from all post-edit positions to the edited value's position c
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.75\linewidth]{figures/f3_knockout.pdf}
+\includegraphics[width=0.62\linewidth]{figures/f3_knockout.pdf}
 \caption{Rate at which the answer follows the edited value under each blocked attention target. Blocking the value's own position collapses following on every model; matched control blocks do not. Error bars are 95 percent bootstrap intervals.}
 \label{fig:knockout}
 \end{figure}
