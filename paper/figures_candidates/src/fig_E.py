@@ -12,8 +12,8 @@ from style import apply, save, MUT
 apply()
 
 ROWS = ["DeepSeek V3.2", "Claude Sonnet 4.5", "Llama 3.3 70B", "Qwen3-4B"]
-COLS = ["Implied by\nthe prompt", "Stated,\nredundant\nwith trace",
-        "Stated,\nsole source", "Defined by\nthe prompt"]
+COLS = ["Only implied\nby the prompt", "Stated; also\nderivable\nelsewhere",
+        "Stated; the\nonly source", "Prompt states\nhow to derive it"]
 M = np.array([[0.01, 0.01, 0.05, 0.43],
               [0.26, 0.13, 0.78, 0.32],
               [0.01, 0.03, np.nan, 0.01],
@@ -36,7 +36,7 @@ for i in range(M.shape[0]):
                     va="center", fontsize=6.6,
                     color="white" if dark else "#1a1a1a")
 ax.set_xticks(np.arange(4) + 0.5)
-ax.set_xticklabels(COLS, fontsize=6.2)
+ax.set_xticklabels(COLS, fontsize=5.9)
 ax.set_yticks(np.arange(4) + 0.5)
 ax.set_yticklabels(ROWS, fontsize=6.6)
 ax.invert_yaxis()
@@ -44,7 +44,7 @@ ax.tick_params(length=0)
 for s in ax.spines.values():
     s.set_visible(False)
 cb = fig.colorbar(im, ax=ax, fraction=0.045, pad=0.03)
-cb.set_label("Rate of reverting the edit", fontsize=6.6)
+cb.set_label("Fraction of runs reverting an edited\nvalue to the correct one", fontsize=6.4)
 cb.ax.tick_params(labelsize=6)
 cb.outline.set_visible(False)
 fig.tight_layout()

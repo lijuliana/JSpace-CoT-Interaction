@@ -88,7 +88,7 @@ hi = [max(0.0, wilson(k, n)[1] - m[i]) for i, (k, n) in enumerate(wrt)]
 axB.errorbar(xA, m, yerr=[lo, hi], fmt="o", color=BLUE, ms=3.4,
              elinewidth=1.0, capsize=2, zorder=3)
 axB.set_xlabel("Dependent steps $d$")
-axB.set_ylabel("Fraction written")
+axB.set_ylabel("Intermediate values\nwritten out (fraction)")
 axB.set_xticks(xA)
 axB.set_xticklabels(d671)
 axB.set_xlim(-0.4, 6.4)

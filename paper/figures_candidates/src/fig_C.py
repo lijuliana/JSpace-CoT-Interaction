@@ -23,9 +23,9 @@ RAND = [(0.00, 0.00, 0.00), (0.00, 0.00, 0.01), (0.00, 0.00, 0.00),
 fig, ax = plt.subplots(figsize=(3.4, 2.25))
 y = np.arange(6)[::-1]
 for data, color, mk, label, o in [
-        (PLANT, BLUE, "o", "Plant never-written value", 0.0),
-        (RESTORE, GREEN, "s", "Restore correct state", 0.24),
-        (RAND, GRAY, "^", "Random control", -0.24)]:
+        (PLANT, BLUE, "o", "Inject a new value", 0.0),
+        (RESTORE, GREEN, "s", "Restore the correct value", 0.24),
+        (RAND, GRAY, "^", "Random direction (control)", -0.24)]:
     m = [d[0] for d in data]
     lo = [d[0] - d[1] for d in data]
     hi = [d[2] - d[0] for d in data]
@@ -33,7 +33,7 @@ for data, color, mk, label, o in [
                 mec="white", mew=0.8, elinewidth=1.0, label=label, zorder=3)
 ax.set_yticks(y)
 ax.set_yticklabels(MODELS, fontsize=6.6)
-ax.set_xlabel("Answer follows the patched state")
+ax.set_xlabel("Fraction of runs where the final answer uses the injected value")
 ax.set_xlim(-0.04, 1.06)
 ax.set_xticks([0, 0.25, 0.5, 0.75, 1.0])
 ax.set_xticklabels(["0", "", "0.5", "", "1"])

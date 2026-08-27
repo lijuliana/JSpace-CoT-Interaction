@@ -23,8 +23,8 @@ ax.text(17.5, 0.13, "Attention knockout\ncollapses following\nonly here (12–23
 ax.annotate("0.93 to 0.01\nbetween layers 22 and 24",
             xy=(23.2, 0.47), xytext=(26.0, 0.68), fontsize=6.2, color=MUT,
             arrowprops=dict(arrowstyle="-", color=MUT, lw=0.5))
-ax.set_xlabel("Layer patched (single layer, Qwen3-4B)")
-ax.set_ylabel("Answer follows the planted value")
+ax.set_xlabel("Layer at which the hidden state is overwritten (Qwen3-4B)")
+ax.set_ylabel("Fraction of runs where the final\nanswer uses the injected value")
 ax.set_xticks([0, 12, 24, 35])
 ax.set_xlim(-1, 36)
 ax.set_ylim(-0.05, 1.05)
