@@ -55,10 +55,10 @@ for d in d671:
             k += bool(rec["written"])
     wrt.append((k, n))
 
-fig = plt.figure(figsize=(5.5, 1.95))
-gs1 = fig.add_gridspec(1, 2, wspace=0.32, left=0.08, right=0.555,
-                       top=0.90, bottom=0.24)
-gs2 = fig.add_gridspec(1, 1, left=0.78, right=0.995, top=0.90, bottom=0.24)
+fig = plt.figure(figsize=(5.5, 3.35))
+gs1 = fig.add_gridspec(1, 2, wspace=0.28, left=0.09, right=0.99,
+                       top=0.93, bottom=0.615)
+gs2 = fig.add_gridspec(1, 1, left=0.26, right=0.99, top=0.445, bottom=0.115)
 axA, axB = [fig.add_subplot(gs1[i]) for i in range(2)]
 axC = fig.add_subplot(gs2[0])
 
@@ -79,7 +79,7 @@ axA.set_xticklabels(d671)
 axA.set_xlim(-0.4, 6.4)
 axA.set_ylim(-0.04, 1.14)
 axA.set_yticks([0, 0.5, 1.0])
-tag(axA, "a", x=-0.30)
+tag(axA, "a", x=-0.16)
 
 # (b) writing at ceiling
 m = [k / n for k, n in wrt]
@@ -88,7 +88,7 @@ hi = [max(0.0, wilson(k, n)[1] - m[i]) for i, (k, n) in enumerate(wrt)]
 axB.errorbar(xA, m, yerr=[lo, hi], fmt="o", color=BLUE, ms=3.4,
              elinewidth=1.0, capsize=2, zorder=3)
 axB.set_xlabel("Dependent steps $d$")
-axB.set_ylabel("Fraction of values written")
+axB.set_ylabel("Fraction written")
 axB.set_xticks(xA)
 axB.set_xticklabels(d671)
 axB.set_xlim(-0.4, 6.4)
@@ -96,7 +96,7 @@ axB.set_ylim(-0.04, 1.14)
 axB.set_yticks([0, 0.5, 1.0])
 axB.text(3.2, 0.50, "30 to 1,920 values per\ndepth; no onset threshold",
          fontsize=6.2, color=MUT, ha="center")
-tag(axB, "b", x=-0.30)
+tag(axB, "b", x=-0.16)
 
 # (c) interventions
 rows = [
@@ -122,7 +122,7 @@ axC.text(-0.05, 1.34, "Positive control: internally held task",
          fontsize=6.0, color=MUT, ha="right")
 axC.text(-0.97, 0.36, "Truncation, not internalization",
          fontsize=6.0, color=MUT, ha="left")
-tag(axC, "c", x=-0.72)
+tag(axC, "c", x=-0.31)
 
 for ax in (axA, axB):
     ax.grid(axis="y", color="#efefef", lw=0.6)

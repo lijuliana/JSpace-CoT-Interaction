@@ -78,8 +78,8 @@ def apply():
 
 
 def tag(ax, letter, x=-0.14, y=1.02):
-    """Bold panel letter in the axes corner."""
-    ax.text(x, y, letter, transform=ax.transAxes, fontsize=9,
+    """Bold uppercase panel letter in the axes corner."""
+    ax.text(x, y, letter.upper(), transform=ax.transAxes, fontsize=9,
             fontweight="bold", va="bottom", ha="left")
 
 
