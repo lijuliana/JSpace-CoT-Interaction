@@ -19,7 +19,7 @@ ax.axvspan(11.5, 23.5, color=T_SKY, zorder=0)
 ax.plot(LAYERS, SINGLE, "-o", color=BLUE, ms=3.0, lw=1.2, zorder=3)
 ax.axvline(23, color=MUT, lw=0.6, ls=":", zorder=1)
 ax.text(17.5, 0.13, "Attention knockout\ncollapses following\nonly here (12–23)",
-        fontsize=6.2, color="#31708f", ha="center")
+        fontsize=6.2, color="#3D6FA3", ha="center")
 ax.annotate("0.93 to 0.01\nbetween layers 22 and 24",
             xy=(23.2, 0.47), xytext=(26.0, 0.68), fontsize=6.2, color=MUT,
             arrowprops=dict(arrowstyle="-", color=MUT, lw=0.5))

@@ -21,17 +21,17 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-BLUE = "#0072B2"
-VERM = "#D55E00"
-SKY = "#56B4E9"
-GREEN = "#009E73"
+BLUE = "#31518F"
+VERM = "#C05B33"
+SKY = "#5D9FDB"
+GREEN = "#4F8D57"
 GRAY = "#8a8a8a"
 INK = "#1a1a1a"
 MUT = "#666666"
 LIGHT = "#dcdcdc"
 
 T_GRAY, T_VERM, T_GREEN, T_BLUE, T_SKY = (
-    "#f0f0ee", "#fbe9de", "#e4f4ec", "#e8f1f8", "#eaf4fb")
+    "#f0f0ee", "#f8eae2", "#e9f2ea", "#e9eef7", "#eaf1fa")
 
 MODEL_COLORS = {
     "Qwen3-4B": SKY,
