@@ -8,8 +8,7 @@
 \bibitem[Geiger et~al.(2021)Geiger, Lu, Icard, and Potts]{geiger2021causal}
 Atticus Geiger, Hanson Lu, Thomas Icard, and Christopher Potts.
 \newblock Causal abstractions of neural networks.
-\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2021.
-\newblock arXiv:2106.02997.
+\newblock In \emph{NeurIPS}, 2021.
 
 \bibitem[Gurnee et~al.(2026)]{gurnee2026jspace}
 Wes Gurnee et~al.
@@ -19,51 +18,55 @@ Wes Gurnee et~al.
 \bibitem[Heimersheim and Nanda(2024)]{heimersheim2024patching}
 Stefan Heimersheim and Neel Nanda.
 \newblock How to use and interpret activation patching.
-\newblock \emph{arXiv preprint arXiv:2404.15255}, 2024.
+\newblock \emph{arXiv:2404.15255}, 2024.
 
-\bibitem[Lanchantin et~al.(2023)Lanchantin, Toshniwal, Weston, Szlam, and Sukhbaatar]{lanchantin2023selfnotes}
-Jack Lanchantin, Shubham Toshniwal, Jason Weston, Arthur Szlam, and Sainbayar Sukhbaatar.
+\bibitem[Lanchantin et~al.(2023)Lanchantin, Toshniwal, Weston, Szlam, and
+  Sukhbaatar]{lanchantin2023selfnotes}
+Jack Lanchantin, Shubham Toshniwal, Jason Weston, Arthur Szlam, and Sainbayar
+  Sukhbaatar.
 \newblock Learning to reason and memorize with self-notes.
-\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2023.
-\newblock arXiv:2305.00833.
+\newblock In \emph{NeurIPS}, 2023.
 
 \bibitem[Lanham et~al.(2023)]{lanham2023faithfulness}
 Tamera Lanham et~al.
 \newblock Measuring faithfulness in chain-of-thought reasoning.
-\newblock \emph{arXiv preprint arXiv:2307.13702}, 2023.
+\newblock \emph{arXiv:2307.13702}, 2023.
 
 \bibitem[Meng et~al.(2022)Meng, Bau, Andonian, and Belinkov]{meng2022rome}
 Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov.
 \newblock Locating and editing factual associations in {GPT}.
-\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2022.
-\newblock arXiv:2202.05262.
+\newblock In \emph{NeurIPS}, 2022.
 
 \bibitem[Merrill and Sabharwal(2024)]{merrill2024expressive}
 William Merrill and Ashish Sabharwal.
 \newblock The expressive power of transformers with chain of thought.
-\newblock In \emph{International Conference on Learning Representations (ICLR)}, 2024.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2024.
 \newblock arXiv:2310.07923.
 
 \bibitem[Pfau et~al.(2024)Pfau, Merrill, and Bowman]{pfau2024dot}
 Jacob Pfau, William Merrill, and Samuel~R. Bowman.
-\newblock Let's think dot by dot: Hidden computation in transformer language models.
+\newblock Let's think dot by dot: Hidden computation in transformer language
+  models.
 \newblock In \emph{Conference on Language Modeling (COLM)}, 2024.
 \newblock arXiv:2404.15758.
 
 \bibitem[Shih et~al.(2026)]{shih2026registers}
 Andy Shih et~al.
-\newblock Do models read what they write? causal registers in scratchpad reasoning.
-\newblock \emph{arXiv preprint arXiv:2606.29522}, 2026.
+\newblock Do models read what they write? causal registers in scratchpad
+  reasoning.
+\newblock \emph{arXiv:2606.29522}, 2026.
 
-\bibitem[Turpin et~al.(2023)Turpin, Michael, Perez, and Bowman]{turpin2023unfaithful}
+\bibitem[Turpin et~al.(2023)Turpin, Michael, Perez, and
+  Bowman]{turpin2023unfaithful}
 Miles Turpin, Julian Michael, Ethan Perez, and Samuel~R. Bowman.
-\newblock Language models don't always say what they think: Unfaithful explanations in chain-of-thought prompting.
-\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, 2023.
-\newblock arXiv:2305.04388.
+\newblock Language models don't always say what they think: Unfaithful
+  explanations in chain-of-thought prompting.
+\newblock In \emph{NeurIPS}, 2023.
 
 \bibitem[Zhu et~al.(2025)]{zhu2025variables}
 Fangwei Zhu et~al.
 \newblock Chain-of-thought tokens are computer program variables.
-\newblock \emph{arXiv preprint arXiv:2505.04955}, 2025.
+\newblock \emph{arXiv:2505.04955}, 2025.
 
 \end{thebibliography}
