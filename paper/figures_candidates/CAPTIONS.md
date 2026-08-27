@@ -28,8 +28,8 @@ the written text below roughly twelve tokens per step collapses accuracy by
 truncation rather than pushing the values into internal memory (DeepSeek
 V3.2, d=16).
 
-**F2 (registers).** The hidden state under a written value behaves as a
-settable register, and two registers compose. (A) The injection: the text
+**F2 (registers).** The hidden state at a written value's token is a
+settable store of that value, and two stored values compose. (A) The injection: the text
 still says 457, but the hidden state at that token now encodes 462, a
 number that appears nowhere; the final answer continues from 462. (B) The
 fraction of runs whose final answer uses the injected value, on six models;
@@ -67,8 +67,8 @@ appears at 0.88 to 0.95 on both models for every injection pattern; a
 norm-matched random injection moves the answer off every expected value,
 and answers using only one of two injected values occur at 0.01.
 
-**C (per-model injection, standalone).** The hidden state under a written
-value is a settable register on all six models tested: injecting a
+**C (per-model injection, standalone).** The hidden state at a written
+value's token is a settable store of that value on all six models tested: injecting a
 never-written value makes the final answer build on it at 0.70 to 1.00,
 restoring the correct value recovers the correct answer, and a norm-matched
 random direction never produces the target value.
