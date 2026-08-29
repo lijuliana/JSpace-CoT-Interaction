@@ -39,7 +39,7 @@
 % --- 1: text edit (above, left) ---
 \node[note, anchor=south west] (n1) at ($(steps.north west)+(-6mm,11mm)$)
   {\textbf{1}\; Edit the visible text of one step:\\
-   \phantom{\textbf{1}\;} the written value 452 becomes 457};
+   \phantom{\textbf{1}\;} the correct value $c=452$ becomes $e=457$};
 \draw[arr, cmut] ($(n1.south)+(4mm,0)$) to[out=-60,in=90] ($(edit.north)+(-3mm,0.3mm)$);
 
 % --- 3: attention knockout (above, right) ---
@@ -54,7 +54,7 @@
 % --- 2: state overwrite (below) ---
 \node[seg, fill=tgreen, minimum width=34mm, minimum height=10mm,
       text=cgreen, below=9mm of edit] (n2box)
-  {hidden state at `457'\\is replaced by the state\\of 462, never written};
+  {hidden state at `457'\\is replaced by the state\\of p = 462, never written};
 \draw[arr, cgreen, line width=0.9pt] (n2box.north) -- ($(edit.south)+(0,-0.3mm)$);
 \node[note, text=cgreen, anchor=west] at ($(n2box.east)+(2mm,0)$)
   {\textbf{2}\; Overwrite the hidden state;\\

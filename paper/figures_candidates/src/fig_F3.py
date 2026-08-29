@@ -47,11 +47,16 @@ axA = fig.add_subplot(gsL[0])
 axB = fig.add_subplot(gsR[0])
 axC = fig.add_subplot(gsR[1], sharex=axB)
 
-# (a) knockout slopegraph
+# (a) knockout conditions: unconnected points with 95% Wilson intervals
+from style import wilson
 x = np.arange(5)
-for m, vals in KNOCK.items():
-    axA.plot(x, vals, "-", marker=MODEL_MARKERS[m], color=MODEL_COLORS[m],
-             ms=3.4, lw=1.1, mec="white", mew=0.5, zorder=3)
+for mi, (m, vals) in enumerate(KNOCK.items()):
+    xo = x + (mi - 1.5) * 0.09
+    lo = [v - wilson(round(v * 600), 600)[0] for v in vals]
+    hi = [wilson(round(v * 600), 600)[1] - v for v in vals]
+    axA.errorbar(xo, vals, yerr=[lo, hi], fmt=MODEL_MARKERS[m],
+                 color=MODEL_COLORS[m], ms=3.6, mec="white", mew=0.5,
+                 elinewidth=0.9, capsize=0, ls="none", zorder=3)
     axA.text(-0.18, LABEL_Y[m], m, color=MODEL_COLORS[m], fontsize=6.4,
              ha="left")
 axA.set_xticks(x)

@@ -101,7 +101,7 @@ axB.set_xticklabels(d671)
 axB.set_xlim(-0.4, 6.4)
 axB.set_ylim(-0.04, 1.14)
 axB.set_yticks([0, 0.5, 1.0])
-axB.text(4.6, 0.24, "observed: at ceiling from\n$d{=}1$; no onset threshold",
+axB.text(4.6, 0.24, "observed (R1-671B): at ceiling\nfrom $d{=}1$; no onset threshold",
          fontsize=6.2, color=MUT, ha="center")
 tag(axB, "b", x=-0.16)
 

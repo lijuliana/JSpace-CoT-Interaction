@@ -20,10 +20,13 @@ apply()
 
 
 def cats(fname):
+    """Stacked-bar decomposition uses collision-free items; the direct label
+    uses the hit rate over all items so it matches the numbers in the text."""
     conds = ["none", "aonly", "bonly", "joint"]
+    recs = load(fname)
     out = {c: {"clean": 0, "apB": 0, "Abp": 0, "apbp": 0, "other": 0, "n": 0}
            for c in conds}
-    for r in load(fname):
+    for r in recs:
         exp = {"clean": r["A"] + r["B"], "apB": r["ap"] + r["B"],
                "Abp": r["A"] + r["bp"], "apbp": r["ap"] + r["bp"]}
         if len(set(exp.values())) < 4:
@@ -33,11 +36,12 @@ def cats(fname):
             for a in r[c]["answers"]:
                 out[c][rev.get(a, "other")] += 1
                 out[c]["n"] += 1
+    hits = {c: sum(r[c]["hit"] for r in recs) / len(recs) for c in conds}
     for c in conds:
         n = out[c].pop("n")
         for k in out[c]:
             out[c][k] /= n
-    return out
+    return out, hits
 
 
 def band(ax, x, y, w, h, text, fc, tc=INK, fs=6.4):
@@ -59,21 +63,22 @@ axQ1, axQ2 = fig.add_subplot(gsB[0]), fig.add_subplot(gsB[1])
 axS.axis("off")
 axS.set_xlim(0, 1)
 axS.set_ylim(0, 1)
-axS.text(0.5, 0.955, "One line of the model's own written\nreasoning; this text never changes:",
-         ha="center", va="center", fontsize=6.2, color=MUT)
-band(axS, 0.10, 0.76, 0.80, 0.12, "After step 5 the value is 457.", T_GRAY)
-axS.text(0.5, 0.665, "Hidden state stored at the token ‘457’:",
-         ha="center", va="center", fontsize=6.2, color=MUT)
-band(axS, 0.16, 0.46, 0.20, 0.12, "457", T_GRAY)
-band(axS, 0.64, 0.46, 0.20, 0.12, "462", T_GREEN, tc=GREEN)
+axS.text(0.5, 0.955, "The visible reasoning prefix; every\ncharacter stays exactly in place:",
+         ha="center", va="center", fontsize=6.6, color=MUT)
+band(axS, 0.10, 0.76, 0.80, 0.12, "After step 5 the value is 457.", T_GRAY,
+     fs=6.6)
+axS.text(0.5, 0.665, "Activation at the 457 position:",
+         ha="center", va="center", fontsize=6.6, color=MUT)
+band(axS, 0.16, 0.46, 0.20, 0.12, "457", T_GRAY, fs=6.6)
+band(axS, 0.64, 0.46, 0.20, 0.12, "462", T_GREEN, tc=GREEN, fs=6.6)
 axS.add_patch(FancyArrowPatch((0.39, 0.52), (0.61, 0.52), arrowstyle="->",
                               color=GREEN, lw=1.2, mutation_scale=9))
-axS.text(0.74, 0.395, "462 was never written anywhere",
-         ha="center", va="center", fontsize=5.8, color=GREEN)
-axS.text(0.5, 0.295, "The model keeps generating and its\nfinal answer builds on 462, not 457:",
-         ha="center", va="center", fontsize=6.2, color=MUT)
-band(axS, 0.10, 0.09, 0.80, 0.12, "final answer = chain continued from 462",
-     T_BLUE, tc=BLUE, fs=6.0)
+axS.text(0.5, 0.385, "patched from a run that wrote 462;\n462 appears in no text",
+         ha="center", va="center", fontsize=6.0, color=GREEN)
+axS.text(0.5, 0.27, "The model keeps generating and its\nfinal answer builds on 462, not 457:",
+         ha="center", va="center", fontsize=6.6, color=MUT)
+band(axS, 0.06, 0.07, 0.88, 0.12, "final answer = chain continued from 462",
+     T_BLUE, tc=BLUE, fs=6.4)
 tag(axS, "a", x=0.0, y=0.97)
 
 # (B) per-model rates
@@ -96,7 +101,7 @@ for data, color, mk, label, o in [
     axD.errorbar(m, y + o, xerr=[lo, hi], fmt=mk, color=color, ms=4.2,
                  mec="white", mew=0.8, elinewidth=1.0, label=label, zorder=3)
 axD.set_yticks(y)
-axD.set_yticklabels(models, fontsize=6.6)
+axD.set_yticklabels(models, fontsize=7.0)
 axD.set_xlabel("Fraction of runs where the final\nanswer uses the injected value",
                fontsize=7)
 axD.set_xlim(-0.04, 1.06)
@@ -104,7 +109,7 @@ axD.set_xticks([0, 0.25, 0.5, 0.75, 1.0])
 axD.set_xticklabels(["0", "", "0.5", "", "1"])
 axD.grid(axis="x", color="#efefef", lw=0.6)
 axD.set_axisbelow(True)
-axD.legend(fontsize=6.0, loc="upper left", bbox_to_anchor=(0.08, 1.04))
+axD.legend(fontsize=6.6, loc="upper left", bbox_to_anchor=(0.08, 1.04))
 tag(axD, "b", x=-0.36)
 
 # (C, D) composition answer categories
@@ -117,7 +122,7 @@ xt = ["No\ninjection", "Inject\n$a'$", "Inject\n$b'$", "Inject\nboth"]
 for ax, fname, mname, letter in [
         (axQ1, "s1_qwen25-7b.jsonl", "Qwen2.5-7B", "c"),
         (axQ2, "s1_qwen3-4b.jsonl", "Qwen3-4B", "d")]:
-    data = cats(fname)
+    data, hits = cats(fname)
     for xi, c in enumerate(conds):
         bot = 0.0
         for key, color, _ in CAT:
@@ -129,8 +134,8 @@ for ax, fname, mname, letter in [
         dcol = dict((k, col) for k, col, _ in CAT)[dk]
         dlab = dict((k, lab) for k, _, lab in CAT)[dk]
         short = dlab if dk != "clean" else "$A{+}B$"
-        ax.text(xi, 1.04, f"{short}\n{data[c][dk]:.2f}", ha="center",
-                fontsize=6.2, color=dcol if dk != "clean" else MUT)
+        ax.text(xi, 1.04, f"{short}\n{hits[c]:.2f}", ha="center",
+                fontsize=6.4, color=dcol if dk != "clean" else MUT)
     ax.set_xticks(np.arange(4))
     ax.set_xticklabels(xt, fontsize=6.6)
     ax.set_ylim(0, 1.26)
