@@ -92,8 +92,8 @@ axB.plot(xs, 1 / (1 + np.exp(-2.2 * (xs - 2))), "--", color=GRAY,
          lw=1.1, zorder=2)
 axB.errorbar(xA, m, yerr=[lo, hi], fmt="o", color=BLUE, ms=3.4,
              elinewidth=1.0, capsize=2, zorder=3)
-axB.text(1.72, 0.60, "predicted onset if writing\nrelieves a full workspace",
-         color=GRAY, fontsize=6.0, ha="right")
+axB.text(0.05, 0.62, "predicted onset if writing\nrelieves a full workspace",
+         color=GRAY, fontsize=6.0, ha="left")
 axB.set_xlabel("Dependent steps $d$")
 axB.set_ylabel("Intermediate values\nwritten out (fraction)")
 axB.set_xticks(xA)

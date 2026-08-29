@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1788029025.83385 "main.aux" "main.bbl" "main" 1788029026.49935 0
+["bibtex main"] 1788029025.83385 "main.aux" "main.bbl" "main" 1788029977.74822 0
   "./references.bib" 1787975164.94704 3738 93eb1c274dc068bcdece0d902bed837a ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "main.aux" 1788029026.3059 10873 587a910e7668bbcc068249a2b5874245 "pdflatex"
+  "main.aux" 1788029977.53921 10873 587a910e7668bbcc068249a2b5874245 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1788029025.91145 "main.tex" "main.pdf" "main" 1788029026.49947 0
+["pdflatex"] 1788029977.10967 "main.tex" "main.pdf" "main" 1788029977.74833 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -111,12 +111,12 @@
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "figures/D_protocol.pdf" 1787797929.09211 45233 66082f5500b0efaa55b487d00b39192a ""
-  "figures/F1_capacity.pdf" 1788029012.80686 64457 99485c15f259c003662d2eebd50acde1 ""
+  "figures/F1_capacity.pdf" 1788029967.61975 64448 9722a6817a093227517aa61658ec00aa ""
   "figures/F2_registers.pdf" 1787797929.09307 85580 242c86ff208dd0a84950a6ceb989b7c5 ""
   "figures/F3_retrieval.pdf" 1787797929.09347 48051 b1e8fd78b152b5f3ea2e08454c2753b8 ""
-  "main.aux" 1788029026.3059 10873 587a910e7668bbcc068249a2b5874245 "pdflatex"
+  "main.aux" 1788029977.53921 10873 587a910e7668bbcc068249a2b5874245 "pdflatex"
   "main.bbl" 1788029025.90969 3794 f21391e15b2c101c3d69ac7d35467bb0 "bibtex main"
-  "main.out" 1788029026.30651 4479 0bbe89cc14be1fedd97ebc6a2be56083 "pdflatex"
+  "main.out" 1788029977.53977 4479 0bbe89cc14be1fedd97ebc6a2be56083 "pdflatex"
   "main.tex" 1788029014.94218 25057 6c2789515daedf1951c68fc08e0d8e94 ""
   "neurips_2025.sty" 1787731934.39924 11625 aa8b84b0e1cfdd9d2dff0cc280140d5d ""
   (generated)
