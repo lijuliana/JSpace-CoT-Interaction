@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1788030813.35998 "main.aux" "main.bbl" "main" 1788030843.84638 0
+["bibtex main"] 1788031415.45692 "main.aux" "main.bbl" "main" 1788031499.47414 0
   "./references.bib" 1787975164.94704 3738 93eb1c274dc068bcdece0d902bed837a ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "main.aux" 1788030843.60504 10891 156ce0458cf54deec9a38abad7c9becd "pdflatex"
+  "main.aux" 1788031499.27593 11272 ec7fd87a3172ff83c354b0f2bae4c5b7 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1788030843.16796 "main.tex" "main.pdf" "main" 1788030843.84652 0
+["pdflatex"] 1788031498.87085 "main.tex" "main.pdf" "main" 1788031499.47427 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -114,10 +114,10 @@
   "figures/F1_capacity.pdf" 1788029967.61975 64448 9722a6817a093227517aa61658ec00aa ""
   "figures/F2_registers.pdf" 1787797929.09307 85580 242c86ff208dd0a84950a6ceb989b7c5 ""
   "figures/F3_retrieval.pdf" 1787797929.09347 48051 b1e8fd78b152b5f3ea2e08454c2753b8 ""
-  "main.aux" 1788030843.60504 10891 156ce0458cf54deec9a38abad7c9becd "pdflatex"
-  "main.bbl" 1788030813.4437 3794 f21391e15b2c101c3d69ac7d35467bb0 "bibtex main"
-  "main.out" 1788030843.60565 4524 d471dcf6a483a81f02046ef6b6c1d781 "pdflatex"
-  "main.tex" 1788030834.3263 26889 bfc985b401d3f73e2b26a9064962999d ""
+  "main.aux" 1788031499.27593 11272 ec7fd87a3172ff83c354b0f2bae4c5b7 "pdflatex"
+  "main.bbl" 1788031415.55105 3794 f21391e15b2c101c3d69ac7d35467bb0 "bibtex main"
+  "main.out" 1788031499.27656 4231 37001190856b10eb5f52098482195441 "pdflatex"
+  "main.tex" 1788031489.58396 27418 7cb4b5e4e45231bb6242e369b03827bf ""
   "neurips_2025.sty" 1787731934.39924 11625 aa8b84b0e1cfdd9d2dff0cc280140d5d ""
   (generated)
   "main.aux"
