@@ -58,7 +58,7 @@ for d in d671:
 fig = plt.figure(figsize=(5.5, 3.35))
 gs1 = fig.add_gridspec(1, 2, wspace=0.28, left=0.09, right=0.99,
                        top=0.93, bottom=0.615)
-gs2 = fig.add_gridspec(1, 1, left=0.26, right=0.99, top=0.445, bottom=0.115)
+gs2 = fig.add_gridspec(1, 1, left=0.26, right=0.80, top=0.445, bottom=0.115)
 axA, axB = [fig.add_subplot(gs1[i]) for i in range(2)]
 axC = fig.add_subplot(gs2[0])
 
@@ -85,8 +85,15 @@ tag(axA, "a", x=-0.16)
 m = [k / n for k, n in wrt]
 lo = [max(0.0, m[i] - wilson(k, n)[0]) for i, (k, n) in enumerate(wrt)]
 hi = [max(0.0, wilson(k, n)[1] - m[i]) for i, (k, n) in enumerate(wrt)]
+# what the capacity-relief account predicts: writing switches on only
+# past the silent failure depth (panel a), rising toward ceiling
+xs = np.linspace(-0.4, 6.4, 120)
+axB.plot(xs, 1 / (1 + np.exp(-2.2 * (xs - 2))), "--", color=GRAY,
+         lw=1.1, zorder=2)
 axB.errorbar(xA, m, yerr=[lo, hi], fmt="o", color=BLUE, ms=3.4,
              elinewidth=1.0, capsize=2, zorder=3)
+axB.text(1.72, 0.60, "predicted onset if writing\nrelieves a full workspace",
+         color=GRAY, fontsize=6.0, ha="right")
 axB.set_xlabel("Dependent steps $d$")
 axB.set_ylabel("Intermediate values\nwritten out (fraction)")
 axB.set_xticks(xA)
@@ -94,7 +101,7 @@ axB.set_xticklabels(d671)
 axB.set_xlim(-0.4, 6.4)
 axB.set_ylim(-0.04, 1.14)
 axB.set_yticks([0, 0.5, 1.0])
-axB.text(3.2, 0.50, "30 to 1,920 values per\ndepth; no onset threshold",
+axB.text(4.6, 0.24, "observed: at ceiling from\n$d{=}1$; no onset threshold",
          fontsize=6.2, color=MUT, ha="center")
 tag(axB, "b", x=-0.16)
 
