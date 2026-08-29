@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  29 AUG 2026 14:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  29 AUG 2026 15:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -524,41 +524,47 @@ File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2025
 /texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
-<figures/D_protocol.pdf, id=114, 382.74594pt x 146.96104pt>
+<figures/D_protocol.pdf, id=112, 382.74594pt x 146.96104pt>
 File: figures/D_protocol.pdf Graphic file (type pdf)
 <use figures/D_protocol.pdf>
-Package pdftex.def Info: figures/D_protocol.pdf  used on input line 51.
+Package pdftex.def Info: figures/D_protocol.pdf  used on input line 55.
 (pdftex.def)             Requested size: 270.28687pt x 103.78694pt.
+
+Underfull \vbox (badness 3623) has occurred while \output is active []
+
 
 
 [2 <./figures/D_protocol.pdf>]
-<figures/F1_capacity.pdf, id=160, 397.485pt x 242.10449pt>
+<figures/F1_capacity.pdf, id=155, 397.485pt x 242.10449pt>
 File: figures/F1_capacity.pdf Graphic file (type pdf)
 <use figures/F1_capacity.pdf>
-Package pdftex.def Info: figures/F1_capacity.pdf  used on input line 71.
+Package pdftex.def Info: figures/F1_capacity.pdf  used on input line 75.
 (pdftex.def)             Requested size: 262.34154pt x 159.79315pt.
-
-Underfull \vbox (badness 2384) has occurred while \output is active []
-
 
 
 [3 <./figures/F1_capacity.pdf>]
-<figures/F2_registers.pdf, id=218, 397.485pt x 299.92049pt>
+<figures/F2_registers.pdf, id=214, 397.485pt x 299.92049pt>
 File: figures/F2_registers.pdf Graphic file (type pdf)
 <use figures/F2_registers.pdf>
-Package pdftex.def Info: figures/F2_registers.pdf  used on input line 90.
+Package pdftex.def Info: figures/F2_registers.pdf  used on input line 94.
 (pdftex.def)             Requested size: 278.23827pt x 209.94746pt.
 
+Underfull \vbox (badness 8189) has occurred while \output is active []
 
-[4 <./figures/F2_registers.pdf>]
-<figures/F3_retrieval.pdf, id=288, 397.485pt x 184.28851pt>
+
+
+[4]
+<figures/F3_retrieval.pdf, id=223, 397.485pt x 184.28851pt>
 File: figures/F3_retrieval.pdf Graphic file (type pdf)
 <use figures/F3_retrieval.pdf>
-Package pdftex.def Info: figures/F3_retrieval.pdf  used on input line 110.
+Package pdftex.def Info: figures/F3_retrieval.pdf  used on input line 114.
 (pdftex.def)             Requested size: 294.14107pt x 136.37698pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[5 <./figures/F3_retrieval.pdf>]
+
+
+[5 <./figures/F2_registers.pdf> <./figures/F3_retrieval.pdf>]
 
 [6] (./main.bbl)
 
@@ -570,16 +576,16 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 0BBE89CC14BE1FEDD97EBC6A2BE56083;4479.
+(rerunfilecheck)             Checksum: D471DCF6A483A81F02046EF6B6C1D781;4524.
  ) 
 Here is how much of TeX's memory you used:
- 11928 strings out of 473190
- 180437 string characters out of 5715801
- 601238 words of memory out of 5000000
+ 11926 strings out of 473190
+ 180425 string characters out of 5715801
+ 599236 words of memory out of 5000000
  34965 multiletter control sequences out of 15000+600000
  588094 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,9n,79p,2061b,544s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,9n,79p,1796b,542s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
 /usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
@@ -592,10 +598,10 @@ e/2025/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2025/
 texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025/texmf-dist
 /fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/typ
 e1/urw/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 359041 bytes).
+Output written on main.pdf (8 pages, 359550 bytes).
 PDF statistics:
- 432 PDF objects out of 1000 (max. 8388607)
- 328 compressed objects within 4 object streams
- 55 named destinations out of 1000 (max. 500000)
+ 427 PDF objects out of 1000 (max. 8388607)
+ 323 compressed objects within 4 object streams
+ 53 named destinations out of 1000 (max. 500000)
  189 words of extra memory for PDF output out of 10000 (max. 10000000)
 
