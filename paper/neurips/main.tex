@@ -10,7 +10,7 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \makeatletter
-\renewcommand{\@noticestring}{Submitted to the NeurIPS 2025 Workshop: Interpretability as a Science.}
+\renewcommand{\@noticestring}{Submitted to the NeurIPS 2026 Workshop: Interpretability as a Science.}
 \makeatother
 
 \title{Working Memory in the Chain of Thought\\Is Not Captured by J-Space}
@@ -26,35 +26,29 @@
 \maketitle
 
 \begin{abstract}
-A language model's internal workspace supports at most a few steps of chained reasoning, at every scale we test, and the chain of thought holds the rest. A common reading of J-space, the concept workspace a fitted Jacobian lens reads from the residual stream, is that reasoning is carried internally and writing relieves the workspace by externalizing state it would otherwise hold. Three measurements contradict the relief picture. Instructed to answer chained arithmetic without writing, models from 1.5B to 671B parameters collapse beyond one to two dependent steps; a 671B model, so instructed, fails two chained additions. Models write every intermediate value from the first step at every difficulty, so writing shows no onset threshold. The allocation between the two sides never moves: damaging the workspace does not increase writing, capping writing does not move computation inward, and ablating the model's active J-space concepts at the strongest dose that preserves ordinary generation changes nothing, even at the one-to-two-step depths where the workspace does perform the arithmetic: the memory the computation uses is not captured by that readout. We then show how this memory works, with causal interventions on six unmodified models (used as released, with no fine-tuning or task-specific training) from four families on arithmetic and narrative state-tracking tasks. When a model writes an intermediate value, the hidden state under that number in the text carries the value: overwriting it with the hidden state a different number would have produced, text unchanged, redirects the final answer to the different number in 0.70 to 1.00 of cases, while size-matched random noise redirects at most 0.01. Later steps retrieve the value by attending back to that number (blocking only that attention drops the answer's dependence on it to at most 0.007, with matched controls unchanged), the retrieval completes by two thirds of the network's depth, and two written values can be replaced independently, the planted pair composing into a sum that appears nowhere in the input (0.88 to 0.90). For oversight, identical visible text can be made to carry different stored values with different downstream behavior: a chain of thought exposes the symbols of a computation, without guaranteeing their hidden content.
+A common reading of J-space, the concept workspace a fitted Jacobian lens reads from the residual stream, is that reasoning state is carried internally and the chain of thought externalizes state the workspace can no longer hold. Behavioral measurements from 1.5B to 671B parameters show no sign of such relief. Instructed to answer chained arithmetic without writing, models fail beyond one to two dependent steps. In free generation, models write 0.93 to 1.00 of intermediate values from one-step problems on, so writing has no onset threshold. No intervention moves state across the boundary: damaging the residual stream does not increase writing, capping writing does not move computation inward, and ablating the top active J-space concepts at the strongest dose that preserves ordinary generation changes nothing against a size-matched random control. We then locate the memory that does carry the state, with causal interventions on six unmodified models from four families (4B to 14B). The hidden state under a written number holds the value later steps use. Overwriting it with the state a different number would have produced, text unchanged, redirects the final answer to that never-written number in 0.70 to 1.00 of runs; size-matched random noise redirects at most 0.01 on the four instruction-tuned models. Later steps retrieve the value through attention to its position, the retrieval completing by layer 23 of 36 on Qwen3-4B. Two written positions hold values independently, and planted pairs compose into a sum appearing nowhere in the input (0.88 and 0.90). Identical text can therefore accompany different stored values, and a monitor that reads only the text cannot tell them apart.
 \end{abstract}
 
 \section{Introduction}
 
-The chain of thought is the primary working memory of serial reasoning in language models; the internal workspace behind it supports at most a few dependent steps, and writing is not an inference-time overflow from it. We establish this claim with causal interventions on six unmodified models from four families, on two task families with exact ground truth for every intermediate value.
+The chain of thought is the primary working memory of serial reasoning in language models: denied writing, models fail within one to two dependent steps, and no intervention we test shifts state between the internal workspace and the written trace. The behavioral claims are established at 1.5B to 671B parameters; the mechanism, with causal interventions on six unmodified models from four families at 4B to 14B, on two task families with exact ground truth for every intermediate value.
 
-The capacity half addresses the overflow picture of externalization: reasoning state is carried internally, and writing takes over when the workspace can no longer hold it. This was our pre-registered hypothesis, and it is a natural reading of workspace accounts of reasoning, including J-space, the concept workspace a fitted Jacobian lens reads from the residual stream~\citep{gurnee2026jspace}. A workspace that writing relieves should show up in three places; it shows up in none.
-
-\begin{enumerate}
-\item \textbf{No fallback.} Instructed to answer chained arithmetic with no writing (token counts confirm the channel is closed), models collapse beyond one to two dependent steps at every scale to 671B (Section~\ref{sec:nohome}).
-\item \textbf{No threshold.} Models write 0.93 to 1.00 of ground-truth intermediates from one-step problems onward, at every scale from 1.5B to 671B (Section~\ref{sec:nohome}).
-\item \textbf{No reallocation.} Damaging the workspace does not increase writing, capping writing does not move computation inward, and ablating the top active J-space concepts at a generation-preserving dose changes neither accuracy nor what gets written (Section~\ref{sec:nohome}).
-\end{enumerate}
-
-The second half is the mechanism of the memory that remains.
+The capacity half addresses the overflow picture of externalization: reasoning state is carried internally, and writing takes over when the workspace can no longer hold it. This is a natural reading of workspace accounts of reasoning, including J-space, the concept workspace a fitted Jacobian lens reads from the residual stream~\citep{gurnee2026jspace}. A workspace that writing relieves should show up in three places; it shows up in none.
 
 \begin{enumerate}
-\setcounter{enumi}{3}
-\item \textbf{Storage.} The hidden state under a written number carries the value the model later uses: planting a never-written value there, text unchanged, redirects the answer at 0.70 to 1.00 across all six models (Section~\ref{sec:register}).
-\item \textbf{Retrieval.} Later steps retrieve the value by attending back to the written number: blocking only that attention makes the answer independent of the value (at most 0.007 on four models in three families, with matched control blocks unchanged); layer sweeps time the retrieval to the middle third of the network (Section~\ref{sec:read}).
-\item \textbf{Composition, and when models trust what they wrote.} Two positions are independently addressable, composing planted values into their sum (0.88 to 0.90). Which prompt evidence triggers recomputation is model-specific, and reliance on the trace tracks whether the model can regenerate the state, reconciling conflicting reports on how trace reliance scales (Sections~\ref{sec:register} and~\ref{sec:check}).
+\item \textbf{No fallback} (behavioral, 1.5B to 671B). Instructed to answer chained arithmetic with no writing, models fail beyond one to two dependent steps (Section~\ref{sec:nohome}).
+\item \textbf{No threshold} (behavioral, 1.5B to 671B). Models write nearly all ground-truth intermediates from one-step problems onward (Section~\ref{sec:nohome}).
+\item \textbf{No reallocation} (behavioral and ablation, 4B to 7B). Damaging the residual stream does not increase writing, capping writing does not move computation inward, and a generation-preserving J-space ablation changes nothing (Section~\ref{sec:nohome}).
+\item \textbf{Storage} (causal, 4B to 14B). The hidden state under a written number carries the value the model later uses: planting a never-written value there, text unchanged, redirects the answer on all six models (Section~\ref{sec:register}).
+\item \textbf{Retrieval} (causal, 4B to 14B). Later steps read the value through attention to the written number, in the middle third of the network's layers (Section~\ref{sec:read}).
+\item \textbf{Composition and trust} (causal and behavioral). Two positions are independently addressable, and planted values compose into their sum. Reliance on the trace tracks whether the model can regenerate the state, a candidate explanation for conflicting reports on how trace reliance scales (Sections~\ref{sec:register} and~\ref{sec:check}).
 \end{enumerate}
 
 Prior work anticipated the memory role of written tokens theoretically~\citep{merrill2024expressive}, behaviorally~\citep{lanchantin2023selfnotes}, and causally on a fine-tuned model~\citep{shih2026registers} and on multiplication and dynamic-programming tasks~\citep{zhu2025variables}, without testing whether an internal alternative exists, how the value is retrieved, or whether stores compose.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.76\linewidth]{figures/D_protocol.pdf}
+\includegraphics[width=0.68\linewidth]{figures/D_protocol.pdf}
 \caption{The edit-and-continue protocol. One written step of a correct worked solution is altered and the model continues from it; the readout is whether the final answer builds on the altered value. The interventions: (1) edit the visible text of the step; (2) overwrite the hidden state at the value's token, leaving the text unchanged; (3) block attention from later positions to the value's token.}
 \label{fig:protocol}
 \end{figure}
@@ -63,35 +57,33 @@ Prior work anticipated the memory role of written tokens theoretically~\citep{me
 
 \subsection{Tasks and models}
 
-Both task families give exact ground truth for every intermediate value, so the downstream effect of any edit is computable. Arithmetic chains start from a three-digit number and apply $d$ signed two-digit additions and subtractions. Narrative state-tracking problems describe a character whose count of an item changes through varied events and surface forms. In both, the model writes one line per step giving the running value. White-box experiments use Qwen3-4B, Qwen2.5-7B-Instruct, Phi-3-medium, OLMo-2-7B-Instruct, and DeepSeek-R1-Distill-Qwen 7B and 14B; frontier models (DeepSeek V3.2, Claude Sonnet 4.5, Llama 3.3 70B) are tested behaviorally through assistant prefill.
+Both task families give exact ground truth for every intermediate value, so the downstream effect of any edit is computable. Arithmetic chains start from a three-digit number and apply $d$ signed two-digit additions and subtractions. Narrative state-tracking problems describe a character whose count of an item changes through varied events and surface forms. In both, the model writes one line per step giving the running value. A third task, box tracking, updates the contents of several containers in parallel; it appears only as the internally held comparison task for the lesion test in Section~\ref{sec:nohome}. White-box experiments use Qwen3-4B, Qwen2.5-7B-Instruct, Phi-3-medium, OLMo-2-7B-Instruct, and DeepSeek-R1-Distill-Qwen 7B and 14B; the 1.5B distill appears in the behavioral scale range only. Frontier models (DeepSeek V3.2, DeepSeek-R1-671B, Claude Sonnet 4.5, Llama 3.3 70B) are tested behaviorally through assistant prefill.
 
 \subsection{Edit-and-continue protocol}
 
-The protocol takes a correct worked solution, changes the value at one step $j$, truncates immediately after the edited line, and lets the model continue (Figure~\ref{fig:protocol}). A no-edit truncation measures the sampling noise floor, 0.00 throughout. Generation uses temperature 0.6 and top-$p$ 0.95 with five samples per item; unparseable outputs are counted separately. Intervals are 95 percent bootstrap intervals over items. Prompts and configurations are in the appendix; code and data will be released.
+The protocol takes a correct worked solution, changes the value at one step $j$, truncates immediately after the edited line, and lets the model continue (Figure~\ref{fig:protocol}). A no-edit truncation measures the sampling noise floor, 0.00 throughout. Generation uses temperature 0.6 and top-$p$ 0.95 with five samples per item; unparseable outputs are counted separately. Intervals are 95 percent bootstrap intervals over items. Appendix~\ref{app:config} summarizes generation and intervention configuration; prompts, model revisions, and per-run data will be released with the code.
 
 \section{Does writing replace internal working memory?}
 \label{sec:nohome}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.70\linewidth]{figures/F1_capacity.pdf}
-\caption{Writing is not triggered by exhausted internal capacity. (A)~Instructed to answer without writing, models collapse after one to two dependent steps; with writing allowed, accuracy stays near ceiling ($n{=}30$ items per depth). (B)~The fraction of intermediate values written is 1.00 at every depth (Wilson intervals); no onset threshold appears. (C)~No intervention moves state between the workspace and the trace: J-space ablation and random directions leave accuracy unchanged; residual lesions hurt the internally held box-tracking task three times more than the written chain task; a token cap below the per-step floor collapses accuracy by truncation.}
+\includegraphics[width=0.66\linewidth]{figures/F1_capacity.pdf}
+\caption{Writing is not triggered by exhausted internal capacity. (A)~Instructed to answer without writing, models collapse after one to two dependent steps; with writing allowed, accuracy stays near ceiling ($n{=}30$ items per depth). (B)~The fraction of intermediate values written is 0.93 to 1.00 at every depth (Wilson intervals); no onset threshold appears. (C)~No intervention moves state between the workspace and the trace: J-space ablation and random directions leave accuracy unchanged; residual lesions hurt the internally held box-tracking task far more than the written chain task; a token cap below the per-step floor collapses accuracy by truncation.}
 \label{fig:capacity}
 \end{figure}
 
 \subsection{Performance without written intermediates}
 
-Instructed to output only the final answer (Figure~\ref{fig:capacity}A), with token counts confirming nothing else was generated, models fail beyond one to two dependent steps (Qwen2.5-7B: 1.00 at $d=1$, 0.04 at $d=4$; DeepSeek V3.2 at 671B: 0.23 at $d=1$, near zero above). The values are random, so nothing can be recalled; the failures bound performance under this instruction, with its prompting and training-distribution effects, rather than latent internal capacity.
+Instructed to output only the final answer (Figure~\ref{fig:capacity}A), with token counts confirming nothing else was generated, models fail beyond one to two dependent steps (Qwen2.5-7B: 1.00 at $d=1$, 0.04 at $d=4$; DeepSeek-R1-671B: at most 0.27 at any depth, 0.03 at $d=4$; DeepSeek V3.2 on modular-arithmetic chains: 0.23 at $d=1$, at most 0.03 beyond). The values are random, so nothing can be recalled; the failures bound performance under this instruction, with its prompting and training-distribution effects, rather than latent internal capacity.
 
 \subsection{When models write intermediate values}
 
-Models write 0.93 to 1.00 of ground-truth intermediates in free generation from $d=1$ through $d=64$, at every scale from 1.5B to 671B: no difficulty threshold at which writing begins is observed. This rules out an inference-time switch from internal holding to writing; an always-write policy learned in training could itself descend from capacity limits.
+Models write 0.93 to 1.00 of ground-truth intermediates in free generation from $d=1$ through $d=64$, at every scale tested: no difficulty threshold at which writing begins is observed. This rules out an inference-time switch from internal holding to writing; an always-write policy learned in training could itself descend from capacity limits.
 
 \subsection{Tests for reallocation between internal and written state}
 
-A residual-stream lesion strong enough to cross the accuracy cliff makes traces disintegrate rather than expand; hard token budgets compress wording up to 2.5 times while keeping 0.98 to 1.00 of values, then truncate below roughly twelve tokens per step; and ablating J-space~\citep{gurnee2026jspace} changes nothing at the strongest dose preserving ordinary generation (next-token agreement 0.87, perplexity ratio 1.12). The J-space ablation removes the top 16 active concepts at every position and leaves chain-of-thought accuracy, bare-answer accuracy, and the amount written unchanged, on synthetic chains and on GSM8K, doing no more than a size-matched random-directions ablation. The null holds at one to two steps, where models do perform the arithmetic internally.
-
-This bounds the particular readout tested rather than the workspace as a whole: the dose is capped at generation-preserving strength, and a written token's contextual representation and its J-space component are not exclusive alternatives, since the lens samples the same residual states our patches overwrite. The workspace also exceeds J-space by construction: attention and MLP interiors and the KV cache fall outside the lens's domain, and within the residual stream the lens spans a fitted concept dictionary rather than the full state. Section~\ref{sec:register} provides an existence proof of the gap: a value planted in the hidden state under a written number is causally decisive, sits in residual states the lens samples, and survives removal of the top 16 concepts.
+A residual-stream lesion at fixed dose lowers accuracy on box tracking, whose state is held internally, by 0.34, and on the written chain task by 0.11; a lesion strong enough to cross the accuracy cliff makes traces disintegrate rather than expand. Hard token budgets compress wording up to 2.5 times while keeping 0.98 to 1.00 of values, then truncate below roughly twelve tokens per step. Ablating the top 16 active J-space concepts at every position, at the strongest dose preserving ordinary generation (next-token agreement 0.87, perplexity ratio 1.12), leaves chain-of-thought accuracy, bare-answer accuracy, and the amount written unchanged on synthetic chains and on GSM8K, doing no more than a size-matched random-directions ablation. The chain-of-thought-versus-direct ablation asymmetry reported for J-space~\citep{gurnee2026jspace} therefore does not replicate at a coherence-safe dose on our tasks, and the null holds at one to two steps, where models do perform the arithmetic internally. The null bounds this readout at generation-preserving doses rather than the workspace as a whole (Section~\ref{sec:limits}); Section~\ref{sec:register} gives the gap an existence proof: a value planted in the hidden state under a written number is causally decisive, sits in residual states the lens samples, and survives removal of the top 16 concepts.
 
 \begin{figure}[t]
 \centering
@@ -105,18 +97,18 @@ This bounds the particular readout tested rather than the workspace as a whole: 
 
 \subsection{Restoring and replacing stored values}
 
-Figure~\ref{fig:registers} decomposes the effect of editing a written value. Restoring the correct hidden state while the text still shows a corrupted value returns the answer to correct in 0.88 to 1.00 of cases. Planting a third value that appears nowhere in the text redirects the answer to it in 0.70 to 1.00 of cases. The size-matched random control sits at or below 0.01 for the four instruction-tuned models. The patch replaces the position's full contextual state rather than an isolated numeric component; because answers track whichever value's state is planted, the value that state carries is the causal quantity, and because the planted value is a mid-chain intermediate the model never produced, the patch does not inject the answer. The effect persists to 40-step chains (0.98 to 0.95 on Qwen3-4B). Rates are conditioned on items where the text edit was followed (0.44 to 0.98 by model; full table in the appendix).
+Figure~\ref{fig:registers} decomposes the effect of editing a written value. Restoring the correct hidden state while the text still shows a corrupted value returns the answer to correct in 0.88 to 1.00 of cases. Planting a third value that appears nowhere in the text redirects the answer to it in 0.70 to 1.00 of cases. The size-matched random control sits at or below 0.01 for the four instruction-tuned models. The patch replaces the position's full contextual state rather than an isolated numeric component; because answers track whichever value's state is planted, the value that state carries is the causal quantity, and because the planted value is a mid-chain intermediate the model never produced, the patch does not inject the answer. The effect persists to 40-step chains (0.95 to 0.98 on Qwen3-4B). Rates are conditioned on items where the text edit was followed (0.44 to 0.98 by model; Appendix~\ref{app:table}).
 
 On the narrative task the pattern replicates: a planted never-written count is followed at 0.83 [0.75, 0.90] on Qwen3-4B and 0.86 [0.79, 0.92] on Phi-3-medium, restoring the correct state returns the answer at 0.89 and 0.94, and the random control is 0.00 in both ($n=86$ and 89).
 
 \subsection{Independent storage and composition}
 
-In a task with two counters summed at the end (Figure~\ref{fig:registers}C,~D), planting a never-written value at one final position yields the corresponding mixed sum (0.94 and 0.93 on Qwen2.5-7B, 0.89 and 0.93 on Qwen3-4B). Planting both yields their joint sum at 0.90 and 0.88, at or above the product of the single-position rates (0.89 and 0.83). The random patch leaves the clean answer in place (0.96 and 0.95), and answers using only one of the two planted values occur at 0.01. The reported number must be assembled at answer time from two values set independently and never written anywhere.
+In a task with two counters summed at the end (Figure~\ref{fig:registers}C,~D), planting a never-written value at one final position yields the corresponding mixed sum (0.94 and 0.95 on Qwen2.5-7B, 0.88 and 0.93 on Qwen3-4B). Planting both yields their joint sum at 0.90 and 0.88, at or above the product of the single-position rates (0.89 and 0.82). The random patch leaves the clean answer in place (0.96 and 0.95), and answers using only one of the two planted values occur at 0.01. The reported number must be assembled at answer time from two values set independently and never written anywhere.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.74\linewidth]{figures/F3_retrieval.pdf}
-\caption{Written values are retrieved through attention to their token, across the middle third of layers. (A)~Blocking later positions' attention to the edited value's token drops edit use to zero on four models; matched control blocks change nothing ($n{=}600$ per condition). (B)~Overwriting the hidden state at any single layer up to 22 redirects the answer; from layer 24 on it does nothing (Qwen3-4B, 36 layers, $n{=}60$). (C)~Blocking attention across layers 12 to 23 (shaded in both panels) removes 0.83 of edit use; no single layer's block matters (gray dots, $n{=}80$).}
+\caption{Written values are retrieved through attention to their token, across the middle third of layers. (A)~Blocking later positions' attention to the edited value's token drops edit use to zero on four models; matched control blocks change nothing. (B)~Overwriting the hidden state at any single layer before the read redirects the answer; after it, nothing (Qwen3-4B). (C)~Blocking attention across the shaded middle band removes most edit use; no single layer's block matters (gray dots).}
 \label{fig:retrieval}
 \end{figure}
 
@@ -125,39 +117,73 @@ In a task with two counters summed at the end (Figure~\ref{fig:registers}C,~D), 
 
 \subsection{Attention-blocking experiments}
 
-Blocking attention from all post-edit positions to the edited value's position collapses the answer's dependence on that value on every model tested (Figure~\ref{fig:retrieval}A); matched blocks of the adjacent words, a random prompt position, or a random trace position leave it at the unblocked level. Blocking the operand the next step needs breaks the arithmetic itself. The collapse holds across three families and both task formats (natural-language: 0.730 to 0.007 and 0.720 to 0.003 on Qwen3-4B and Phi-3-medium).
-
-Under the value-position block the unparseable-output rate stays at 0.000 (OLMo-2-7B: 0.040, its unblocked rate). The model produces a fluent, parseable number matching neither value: it computes forward from state it can no longer retrieve. Reading is the preferred path rather than the only one: replacing the value's characters with unreadable dots, leaving attention untouched, also removes following; the Qwen models then reconstruct the value from the previous line in 0.60 to 0.73 of cases, Phi-3-medium never (0.00).
+Blocking attention from all post-edit positions to the edited value's position collapses the answer's dependence on that value on every model tested (Figure~\ref{fig:retrieval}A); matched blocks of the adjacent words, a random prompt position, or a random trace position leave it at the unblocked level. Blocking the operand the next step needs breaks the arithmetic itself, a positive control showing the mask disrupts computation it targets. The collapse holds across three families and both task formats (natural-language: 0.730 to 0.007 and 0.720 to 0.003 on Qwen3-4B and Phi-3-medium). Under the block the model produces a fluent, parseable number matching neither value (unparseable rate 0.000; OLMo-2-7B 0.040, its unblocked level): it computes forward from state it can no longer retrieve. Reading is the preferred path rather than the only one: with the value's characters replaced by unreadable dots and attention untouched, the Qwen models reconstruct the value from the previous line in 0.60 to 0.73 of cases, Phi-3-medium never.
 
 \subsection{Where retrieval occurs across layers}
 
 \looseness=-1
-Layer-resolved versions of both interventions locate the read in depth on Qwen3-4B (36 layers; Figure~\ref{fig:retrieval}B,~C). Overwriting the value's hidden state at any single layer up to 22 redirects the answer at 0.90 to 0.94; at layer 24 and beyond, at 0.02 or less ($n=60$): the value can be rewritten at any layer before the read and at none after. Blocking the value-position attention only at the middle third of layers (12 through 23) collapses following from 0.857 to 0.025, blocking only the early or late third leaves it unchanged, and no single layer's block matters ($n=80$): the read is distributed redundantly across the middle third and confined to it; the two sweeps agree on the same boundary, near layer 23. Coarse sweeps on two further models (appendix) show the same structure with model-specific depth.
+Layer-resolved versions of both interventions locate the read in depth on Qwen3-4B (36 layers; Figure~\ref{fig:retrieval}B,~C). Overwriting the value's hidden state at any single layer up to 22 redirects the answer at 0.90 to 0.94; at layer 24 and beyond, at 0.02 or less ($n=60$): the value can be rewritten at any layer before the read and at none after. Blocking the value-position attention only at the middle third of layers (12 through 23) collapses following from 0.857 to 0.025, blocking only the early or late third leaves it unchanged, and no single layer's block matters ($n=80$): the read is distributed redundantly across the middle third and confined to it; the two sweeps agree on the same boundary, near layer 23. Coarse sweeps on two further models (Appendix~\ref{app:sweeps}) show the same structure with model-specific depth.
 
 \section{When models retrieve versus recompute}
 \label{sec:check}
 
-\looseness=-1
-By default, models reuse the value they wrote rather than recompute it. On DeepSeek V3.2, an edited value the prompt merely implies is followed at 0.93, while an edited value whose derivation the prompt states is reverted at 0.43; with the defining sentence present but the edit two steps away, following returns to 0.96, so the reversion targets the defined value. Claude Sonnet 4.5 recomputes more broadly, reverting most when a stated checkpoint is the value's only source. Llama 3.3 70B follows edits at 0.97 either way, despite solving the same chains from scratch: the capacity to recompute does not imply recomputing. Qwen models at 4B and 7B never revert. The conditions are separate experiments; we claim within-experiment contrasts only.
+By default, models reuse the value they wrote rather than recompute it. On DeepSeek V3.2, an edited value the prompt merely implies is followed at 0.93, while an edited value whose derivation the prompt states is reverted at 0.43; with the defining sentence present but the edit two steps away, following returns to 0.96, so the reversion targets the defined value. Claude Sonnet 4.5 recomputes more broadly. Llama 3.3 70B follows edits at 0.97 either way, despite solving the same chains from scratch: the capacity to recompute does not imply recomputing. Qwen models at 4B and 7B never revert. The conditions are separate experiments; we claim within-experiment contrasts only.
 
-On GSM8K worked solutions, an edited intermediate is followed at 0.87 by Qwen3-4B and at 0.10 by V3.2: a benchmark intermediate is often one operation from numbers still in the prompt. Within one model, V3.2 follows edits at 0.93 on chains it cannot regenerate and at 0.10 on GSM8K. \citet{lanham2023faithfulness} report reliance on written reasoning declining with scale on standard benchmarks; our contrasts indicate the direction depends on the state. Faithfulness is a property of the state's regenerability: on regenerable state, stronger models depend less on the trace; on state no model can regenerate, dependence is high at every scale.
+On GSM8K worked solutions, an edited intermediate is followed at 0.87 by Qwen3-4B and at 0.10 by V3.2: a benchmark intermediate is often one operation from numbers still in the prompt. Within one model, V3.2 follows edits at 0.93 on chains it cannot regenerate and at 0.10 on GSM8K. \citet{lanham2023faithfulness} report reliance on written reasoning declining with scale on standard benchmarks; our contrasts offer a candidate explanation, that the direction depends on the state's regenerability. On regenerable state, stronger models depend less on the trace; on state no model can regenerate, dependence is high at every scale. Trace reliance here is a separate quantity from verbalization faithfulness, whether the trace reports the computation that produced the answer; our claims concern reliance on already-written state.
 
 \section{Related work}
 
-Our interventions build on causal tracing and activation patching~\citep{meng2022rome} and causal abstraction~\citep{geiger2021causal}; \citet{heimersheim2024patching} caution that broad patches conflate a component mattering with deleting information at a position, which the single-layer sweep in Section~\ref{sec:read} addresses. Faithfulness studies~\citep{turpin2023unfaithful, lanham2023faithfulness} and filler-token results~\citep{pfau2024dot} bound our claims to state the model does not regenerate internally.
+Our interventions build on causal tracing and activation patching~\citep{meng2022rome} and causal abstraction~\citep{geiger2021causal}; \citet{heimersheim2024patching} caution that broad patches conflate a component mattering with deleting information at a position, which the single-layer sweep in Section~\ref{sec:read} addresses. Faithfulness studies~\citep{turpin2023unfaithful, lanham2023faithfulness} and filler-token results~\citep{pfau2024dot} bound our claims to state the model does not regenerate internally. \citet{latent2026} corrupt surface traces only in aggregate and conclude reasoning is latent; our token-level edits show written state is causally decisive when the model cannot regenerate it, which bounds that conclusion. \citet{korbak2025monitor} argue chain-of-thought monitoring is a useful and fragile oversight channel; our results identify what such a monitor reads and what it cannot.
 
 \section{Limitations}
+\label{sec:limits}
 
-Tasks are numeric and count state tracking, so our claims concern serial task state; code, plans, and multi-entity state are untested. The J-space result bounds one fitted lens at generation-preserving doses and does not measure the J-space content of the written positions. The fine layer sweeps cover one model; the coarse cross-model sweeps do not resolve Qwen2.5-7B's read boundary. White-box evidence is at 4B to 14B scale, frontier evidence behavioral. Conditioning on edit-following (Section~\ref{sec:register}) makes cross-model levels not directly comparable; the appendix reports unconditioned rates. The only patch control is size-matched noise; a structured control planting a valid activation for a different quantity would further isolate value content.
+Tasks are numeric and count state tracking, so our claims concern serial task state; code, plans, and richer multi-entity state are untested. The J-space null bounds one fitted lens at generation-preserving doses: stronger doses damage generation nonspecifically, we do not measure the J-space content of the written positions directly, and the workspace exceeds the lens's domain by construction (attention and MLP interiors, the KV cache, and residual directions outside the fitted dictionary). The fine layer sweeps cover one model, and the coarse sweeps do not resolve Qwen2.5-7B's read boundary. White-box evidence is at 4B to 14B scale, frontier evidence behavioral. Conditioning on edit-following makes cross-model levels not directly comparable; Appendix~\ref{app:table} reports the conditioning rates. A structured patch control planting a valid activation for a different quantity would isolate value content beyond the size-matched noise control used here.
 
 \section{Conclusion}
 
-\looseness=-1
-Serial reasoning state outgrows what a language model's internal workspace supports within one to two dependent steps, and no intervention shifts state between workspace and trace: the chain of thought is working memory rather than overflow, functioning as register-like memory, settable by intervention, retrieved through middle-layer attention, independently addressable, and decisive for the answer. For oversight, identical text can be made to carry different stored values, so monitoring sees the channel, not the state; whether they arise naturally is untested.
+Denied writing, models fail within one to two dependent steps at every scale tested, and no intervention shifts state between workspace and trace: the chain of thought is working memory, settable by intervention, retrieved through middle-layer attention, independently addressable, and decisive for the answer. The divergences between text and stored value shown here are experimenter-induced; the results establish that the representational room for divergence exists and that a monitor reading only the text cannot detect it~\citep{korbak2025monitor}. Whether it arises naturally is untested.
 
 {\footnotesize
+\setlength{\bibsep}{2.5pt}
 \bibliographystyle{plainnat}
 \bibliography{references}
 }
+
+\appendix
+
+\section{Per-model edit and patch rates}
+\label{app:table}
+
+Table~\ref{tab:mechanism} gives the per-model rates behind Figure~\ref{fig:registers}B, with the text-edit-following rate that conditions the patch columns. Ten-step chains; brackets are 95 percent bootstrap intervals; $n$ counts items where the text edit was followed. Unconditioned per-run outcomes are in the released data. The distill models re-solve the problem after their reasoning phase, which elevates their random-control reversion: in a text-logged sample, 24 of 24 reverting random-control continuations re-derive from the prompt's starting value after the reasoning phase, and none correct the value in place. Re-solving can only produce the correct answer, so the planted-value rates are unaffected. R1-distill-1.5B is excluded (12 usable items; random control exceeds the planted-value rate).
+
+\begin{table}[h]
+\centering
+\caption{Text-edit following and state-patch outcomes by model.}
+\label{tab:mechanism}
+\scriptsize
+\begin{tabular}{lccccc}
+\toprule
+Model & Text edit followed & Restore correct state & Plant never-written value & Random control & $n$ \\
+\midrule
+Qwen3-4B & 0.98 [0.95, 1.00] & 1.00 [1.00, 1.00] & 1.00 [0.99, 1.00] & 0.00 [0.00, 0.00] & 106 \\
+Qwen2.5-7B & 0.85 [0.80, 0.90] & 0.97 [0.92, 1.00] & 0.74 [0.67, 0.81] & 0.00 [0.00, 0.01] & 93 \\
+Phi-3-medium & 0.94 [0.90, 0.98] & 0.98 [0.95, 1.00] & 0.94 [0.91, 0.97] & 0.00 [0.00, 0.00] & 102 \\
+OLMo-2-7B & 0.85 [0.79, 0.91] & 0.88 [0.82, 0.94] & 0.93 [0.88, 0.97] & 0.00 [0.00, 0.00] & 100 \\
+R1-distill-7B & 0.60 [0.53, 0.66] & 1.00 [0.99, 1.00] & 0.76 [0.68, 0.84] & 0.30 [0.22, 0.39] & 65 \\
+R1-distill-14B & 0.44 [0.36, 0.52] & 0.99 [0.98, 1.00] & 0.70 [0.61, 0.80] & 0.21 [0.13, 0.29] & 46 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Coarse cross-model layer sweeps}
+\label{app:sweeps}
+
+The state patch applied to one third of layers at a time ($n=60$ items per model; fraction of runs following the planted value). Qwen3-4B (36 layers): early 0.91, middle 0.93, late 0.00, all layers 0.92. Phi-3-medium (40 layers): early 0.89, middle 0.87, late 0.01, all layers 0.89. Both match the fine sweep's structure: the planted value takes effect at any band before the read and at none after. Qwen2.5-7B (28 layers) follows the planted value at 0.70 to 0.73 in every band, so its read boundary is not resolved at this granularity.
+
+\section{Generation and intervention configuration}
+\label{app:config}
+
+Generation uses temperature 0.6, top-$p$ 0.95, five samples per item. The text edit changes only the visible token. The state patch overwrites the residual stream at the value's token position across a middle band of layers with activations captured from a run in which the different value was written there. The attention block masks all attention from post-edit positions to the value's token at all layers. Sample sizes are 100 to 600 per condition with two to three seeds. Prompts, model revisions, and per-run configuration files are released with the code and data.
 
 \end{document}

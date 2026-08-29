@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{13}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -10,15 +10,28 @@ Atticus Geiger, Hanson Lu, Thomas Icard, and Christopher Potts.
 \newblock Causal abstractions of neural networks.
 \newblock In \emph{NeurIPS}, 2021.
 
-\bibitem[Gurnee et~al.(2026)]{gurnee2026jspace}
-Wes Gurnee et~al.
-\newblock Reading concepts from the residual stream with jacobian lenses.
-\newblock \emph{arXiv preprint}, 2026.
+\bibitem[Gurnee et~al.(2026)Gurnee, Sofroniew, Pearce, Piotrowski, Kauvar,
+  Chen, Soligo, Bogdan, Ong, Wang, Thompson, Abrahams, Kantamneni, Ameisen,
+  Batson, and Lindsey]{gurnee2026jspace}
+Wes Gurnee, Nicholas Sofroniew, Adam Pearce, Mateusz Piotrowski, Isaac Kauvar,
+  Runjin Chen, Anna Soligo, Paul Bogdan, Euan Ong, Rowan Wang, Ben Thompson,
+  David Abrahams, Subhash Kantamneni, Emmanuel Ameisen, Joshua Batson, and Jack
+  Lindsey.
+\newblock Verbalizable representations form a global workspace in language
+  models.
+\newblock \emph{arXiv preprint arXiv:2607.15495}, 2026.
 
 \bibitem[Heimersheim and Nanda(2024)]{heimersheim2024patching}
 Stefan Heimersheim and Neel Nanda.
 \newblock How to use and interpret activation patching.
 \newblock \emph{arXiv:2404.15255}, 2024.
+
+\bibitem[Korbak et~al.(2025)Korbak, Balesni, Barnes, Bengio,
+  et~al.]{korbak2025monitor}
+Tomek Korbak, Mikita Balesni, Elizabeth Barnes, Yoshua Bengio, et~al.
+\newblock Chain of thought monitorability: A new and fragile opportunity for
+  {AI} safety.
+\newblock \emph{arXiv preprint arXiv:2507.11473}, 2025.
 
 \bibitem[Lanchantin et~al.(2023)Lanchantin, Toshniwal, Weston, Szlam, and
   Sukhbaatar]{lanchantin2023selfnotes}
@@ -51,11 +64,11 @@ Jacob Pfau, William Merrill, and Samuel~R. Bowman.
 \newblock In \emph{Conference on Language Modeling (COLM)}, 2024.
 \newblock arXiv:2404.15758.
 
-\bibitem[Shih et~al.(2026)]{shih2026registers}
-Andy Shih et~al.
+\bibitem[Shih et~al.(2026)Shih, Winnicki, and Darve]{shih2026registers}
+Benjamin Shih, John Winnicki, and Eric Darve.
 \newblock Do models read what they write? causal registers in scratchpad
   reasoning.
-\newblock \emph{arXiv:2606.29522}, 2026.
+\newblock \emph{arXiv preprint arXiv:2606.29522}, 2026.
 
 \bibitem[Turpin et~al.(2023)Turpin, Michael, Perez, and
   Bowman]{turpin2023unfaithful}
@@ -63,6 +76,11 @@ Miles Turpin, Julian Michael, Ethan Perez, and Samuel~R. Bowman.
 \newblock Language models don't always say what they think: Unfaithful
   explanations in chain-of-thought prompting.
 \newblock In \emph{NeurIPS}, 2023.
+
+\bibitem[Wang(2026)]{latent2026}
+Wenshuo Wang.
+\newblock {LLM} reasoning is latent, not the chain of thought.
+\newblock \emph{arXiv preprint arXiv:2604.15726}, 2026.
 
 \bibitem[Zhu et~al.(2025)]{zhu2025variables}
 Fangwei Zhu et~al.
