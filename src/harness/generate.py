@@ -20,12 +20,19 @@ DIRECT_SUFFIX = ("\nAnswer with only the final answer, nothing else. "
 COT_SUFFIX = ("\nThink step by step, then give the final answer on its own "
               "line as 'Answer: X'.")
 
-CONDITIONS = ["direct", "free", "cot"]
+CONDITIONS = ["direct", "free", "cot", "filler"]
+
+# filler: direct-style answer, with the assistant turn prefilled by inert
+# dot tokens matched to the ~12-tokens-per-step budget of real traces.
+# Extra decode-position compute, no content-bearing writing (Pfau et al.
+# style): if silent failure were a compute-slot effect rather than loss of
+# stored values, filler should rescue it.
+FILLER_PER_STEP = 12
 
 
 def build_prompt(inst, condition, tokenizer, is_reasoning_model):
     text = inst.prompt
-    if condition == "direct":
+    if condition in ("direct", "filler"):
         text += DIRECT_SUFFIX
     elif condition == "cot":
         text += COT_SUFFIX
@@ -36,7 +43,7 @@ def build_prompt(inst, condition, tokenizer, is_reasoning_model):
         # post-think re-solving (the r3 qwen3-4b thinking run showed the
         # re-solve signature, random control reverting 0.66)
     out = tokenizer.apply_chat_template(msgs, **kw)
-    if condition == "direct" and is_reasoning_model:
+    if condition in ("direct", "filler") and is_reasoning_model:
         # suppress the think block; reported as secondary per plan.md.
         # some R1-distill template versions already open <think> in the
         # generation prompt, so only add what is missing
@@ -44,6 +51,8 @@ def build_prompt(inst, condition, tokenizer, is_reasoning_model):
             out += "\n\n</think>\n\n"
         else:
             out += "<think>\n\n</think>\n\n"
+    if condition == "filler":
+        out += " ." * (FILLER_PER_STEP * inst.difficulty) + "\nAnswer:"
     return out
 
 
@@ -95,13 +104,14 @@ def main():
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     with open(args.out, "w") as f:
         for cond in conditions:
-            temp = 0.0 if cond == "direct" else args.temperature
+            temp = 0.0 if cond in ("direct", "filler") else args.temperature
             for d in diffs:
                 insts = [gen(d, s) for s in range(args.n)]
-                for rep in range(args.seeds if cond != "direct" else 1):
+                for rep in range(args.seeds
+                                 if cond not in ("direct", "filler") else 1):
                     sp = SamplingParams(
                         temperature=temp, top_p=args.top_p,
-                        max_tokens=64 if cond == "direct"
+                        max_tokens=64 if cond in ("direct", "filler")
                         else args.max_tokens,
                         seed=rep)  # reproducible sampling per rep
                     prompts = [build_prompt(i, cond, tok, is_reasoning)
@@ -112,7 +122,8 @@ def main():
                         pred = extract_answer(trace, cond)
                         ext = externalization_record(
                             trace, inst.intermediates,
-                            prompt_values(inst)) if cond != "direct" else None
+                            prompt_values(inst)) if cond not in (
+                                "direct", "filler") else None
                         f.write(json.dumps({
                             "model": args.model, "condition": cond,
                             "rep": rep, "difficulty": d,

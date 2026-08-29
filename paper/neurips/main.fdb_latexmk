@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1787799570.246 "main.aux" "main.bbl" "main" 1787799570.92069 0
-  "./references.bib" 1787785578.22138 3144 fc67ac2c18aa8df8e0f79fa5cd30c903 ""
+["bibtex main"] 1787995177.25998 "main.aux" "main.bbl" "main" 1787995177.93812 0
+  "./references.bib" 1787975164.94704 3738 93eb1c274dc068bcdece0d902bed837a ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "main.aux" 1787799570.71469 9531 d7152db00cf1a4cd5d6ec6955a7c6b85 "pdflatex"
+  "main.aux" 1787995177.7455 10649 f9f941c9d3c47f55cf142b26dc4c942b "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1787799570.32123 "main.tex" "main.pdf" "main" 1787799570.92077 0
+["pdflatex"] 1787995177.35172 "main.tex" "main.pdf" "main" 1787995177.93824 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -28,7 +28,9 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm" 1246382020 940 75ac932a52f80982a9f8ea75d03a34cf ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1246382020 940 228d6584342e91276bf566bcf9716b83 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb" 1215737283 169201 9ebf99020dde51a5086e186761a34e8f ""
@@ -112,10 +114,10 @@
   "figures/F1_capacity.pdf" 1787797929.09259 60827 f525bb06fed048514b0ec84b0793905a ""
   "figures/F2_registers.pdf" 1787797929.09307 85580 242c86ff208dd0a84950a6ceb989b7c5 ""
   "figures/F3_retrieval.pdf" 1787797929.09347 48051 b1e8fd78b152b5f3ea2e08454c2753b8 ""
-  "main.aux" 1787799570.71469 9531 d7152db00cf1a4cd5d6ec6955a7c6b85 "pdflatex"
-  "main.bbl" 1787799570.31838 2848 b148a036eefc73f5c963868d62f1960b "bibtex main"
-  "main.out" 1787799570.71516 3804 bf2906895c2d817a37e6d561bfa86346 "pdflatex"
-  "main.tex" 1787799554.56506 20965 b2b76c3bfccfcf8a38dc696ba7fcfbca ""
+  "main.aux" 1787995177.7455 10649 f9f941c9d3c47f55cf142b26dc4c942b "pdflatex"
+  "main.bbl" 1787995177.34998 3794 f21391e15b2c101c3d69ac7d35467bb0 "bibtex main"
+  "main.out" 1787995177.74604 4479 0bbe89cc14be1fedd97ebc6a2be56083 "pdflatex"
+  "main.tex" 1787995168.57539 24679 b835874fb09b7c6f602f8e46a4734b73 ""
   "neurips_2025.sty" 1787731934.39924 11625 aa8b84b0e1cfdd9d2dff0cc280140d5d ""
   (generated)
   "main.aux"
