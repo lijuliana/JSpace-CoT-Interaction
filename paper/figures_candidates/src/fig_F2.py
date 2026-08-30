@@ -69,16 +69,16 @@ band(axS, 0.10, 0.76, 0.80, 0.12, "After step 5 the value is 457.", T_GRAY,
      fs=6.6)
 axS.text(0.5, 0.665, "Activation at the 457 position:",
          ha="center", va="center", fontsize=6.6, color=MUT)
-band(axS, 0.16, 0.46, 0.20, 0.12, "457", T_GRAY, fs=6.6)
-band(axS, 0.64, 0.46, 0.20, 0.12, "462", T_GREEN, tc=GREEN, fs=6.6)
-axS.add_patch(FancyArrowPatch((0.39, 0.52), (0.61, 0.52), arrowstyle="->",
+band(axS, 0.16, 0.45, 0.20, 0.12, "457", T_GRAY, fs=6.6)
+band(axS, 0.64, 0.45, 0.20, 0.12, "462", T_GREEN, tc=GREEN, fs=6.6)
+axS.add_patch(FancyArrowPatch((0.39, 0.51), (0.61, 0.51), arrowstyle="->",
                               color=GREEN, lw=1.2, mutation_scale=9))
-axS.text(0.5, 0.385, "patched from a run that wrote 462;\n462 appears in no text",
+axS.text(0.5, 0.375, "patched from a run that wrote 462",
          ha="center", va="center", fontsize=6.0, color=GREEN)
-axS.text(0.5, 0.27, "The model keeps generating and its\nfinal answer builds on 462, not 457:",
+axS.text(0.5, 0.26, "The final answer then builds on 462, not 457:",
          ha="center", va="center", fontsize=6.6, color=MUT)
-band(axS, 0.06, 0.07, 0.88, 0.12, "final answer = chain continued from 462",
-     T_BLUE, tc=BLUE, fs=6.4)
+band(axS, 0.10, 0.06, 0.80, 0.12, "final answer continues from 462",
+     T_BLUE, tc=BLUE, fs=6.6)
 tag(axS, "a", x=0.0, y=0.97)
 
 # (B) per-model rates
