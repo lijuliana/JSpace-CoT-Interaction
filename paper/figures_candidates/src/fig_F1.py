@@ -55,12 +55,13 @@ for d in d671:
             k += bool(rec["written"])
     wrt.append((k, n))
 
-fig = plt.figure(figsize=(5.5, 3.35))
+fig = plt.figure(figsize=(5.5, 1.85))
 gs1 = fig.add_gridspec(1, 2, wspace=0.28, left=0.09, right=0.99,
-                       top=0.93, bottom=0.615)
-gs2 = fig.add_gridspec(1, 1, left=0.26, right=0.80, top=0.445, bottom=0.115)
+                       top=0.90, bottom=0.24)
 axA, axB = [fig.add_subplot(gs1[i]) for i in range(2)]
-axC = fig.add_subplot(gs2[0])
+figC = plt.figure(figsize=(5.5, 1.55))
+gs2 = figC.add_gridspec(1, 1, left=0.30, right=0.82, top=0.94, bottom=0.28)
+axC = figC.add_subplot(gs2[0])
 
 # (a) silent collapse
 xA = np.log2(d671)
@@ -129,8 +130,6 @@ axC.text(-0.05, 1.34, "Positive control: internally held task",
          fontsize=6.0, color=MUT, ha="right")
 axC.text(-0.97, 0.36, "Truncation, not internalization",
          fontsize=6.0, color=MUT, ha="left")
-tag(axC, "c", x=-0.31)
-
 for ax in (axA, axB):
     ax.grid(axis="y", color="#efefef", lw=0.6)
     ax.set_axisbelow(True)
@@ -138,3 +137,4 @@ axC.grid(axis="x", color="#efefef", lw=0.6)
 axC.set_axisbelow(True)
 
 save(fig, "F1_capacity")
+save(figC, "F1C_interventions")

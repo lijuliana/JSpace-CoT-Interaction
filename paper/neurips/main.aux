@@ -10,31 +10,22 @@
 \citation{zhu2025variables}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Same visible prefix, different stored value, different answer. (A)~The reasoning prefix ends ``After step 5 the value is 457.'' The text never changes; the activation at the 457 position is replaced with one captured from a run that wrote 462, and the final answer continues from 462, a value appearing nowhere in any text. (B)~Fraction of runs whose final answer uses the injected value, per model: planting a counterfactual value $p$ (circles), restoring the correct value $c$ under edited text (squares), and a size-matched random control (triangles); bars are 95\% bootstrap intervals (the distilled models' elevated random control is explained in Appendix~\ref {app:table}). (C,~D)~With two counters $A$ and $B$, injecting a replacement for either or both ($a'$, $b'$) makes the answer equal the matching sum; answers using only one of two injected values occur at 0.01.}}{2}{figure.1}\protected@file@percent }
 \newlabel{fig:registers}{{1}{2}{Same visible prefix, different stored value, different answer. (A)~The reasoning prefix ends ``After step 5 the value is 457.'' The text never changes; the activation at the 457 position is replaced with one captured from a run that wrote 462, and the final answer continues from 462, a value appearing nowhere in any text. (B)~Fraction of runs whose final answer uses the injected value, per model: planting a counterfactual value $p$ (circles), restoring the correct value $c$ under edited text (squares), and a size-matched random control (triangles); bars are 95\% bootstrap intervals (the distilled models' elevated random control is explained in Appendix~\ref {app:table}). (C,~D)~With two counters $A$ and $B$, injecting a replacement for either or both ($a'$, $b'$) makes the answer equal the matching sum; answers using only one of two injected values occur at 0.01}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Experimental setup}{2}{section.2}\protected@file@percent }
 \citation{pfau2024dot}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Writing is not triggered by exhausted internal capacity. (A)~Instructed to answer without writing, models collapse after one to two dependent steps; with writing allowed, accuracy stays near ceiling ($n{=}30$ items per depth). (B)~The fraction of intermediate values written is 0.93 to 1.00 at every depth (Wilson intervals); the dashed curve is the onset a capacity-relief account predicts, and it does not appear. (C)~No intervention moves state between the workspace and the trace: J-space ablation and random directions leave accuracy unchanged; residual lesions hurt the internally held box-tracking task far more than the written chain task; a token cap below the per-step floor collapses accuracy by truncation.}}{3}{figure.2}\protected@file@percent }
-\newlabel{fig:capacity}{{2}{3}{Writing is not triggered by exhausted internal capacity. (A)~Instructed to answer without writing, models collapse after one to two dependent steps; with writing allowed, accuracy stays near ceiling ($n{=}30$ items per depth). (B)~The fraction of intermediate values written is 0.93 to 1.00 at every depth (Wilson intervals); the dashed curve is the onset a capacity-relief account predicts, and it does not appear. (C)~No intervention moves state between the workspace and the trace: J-space ablation and random directions leave accuracy unchanged; residual lesions hurt the internally held box-tracking task far more than the written chain task; a token cap below the per-step floor collapses accuracy by truncation}{figure.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Experimental setup}{3}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Tasks and models}{3}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Edit-and-continue protocol}{3}{subsection.2.2}\protected@file@percent }
 \citation{gurnee2026jspace}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Write: no inference-time capacity threshold}{4}{section.3}\protected@file@percent }
-\newlabel{sec:nohome}{{3}{4}{Write: no inference-time capacity threshold}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Performance without written intermediates}{4}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}When models write intermediate values}{4}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Tests for reallocation between internal and written state}{4}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Store: written positions hold causally active values}{4}{section.4}\protected@file@percent }
-\newlabel{sec:register}{{4}{4}{Store: written positions hold causally active values}{section.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Writing is not triggered by exhausted internal capacity. (A)~Instructed to answer without writing, models collapse after one to two dependent steps; with writing allowed, accuracy stays near ceiling ($n{=}30$ items per depth). (B)~The fraction of intermediate values written is 0.93 to 1.00 at every depth (Wilson intervals); the dashed curve is the onset a capacity-relief account predicts, and it does not appear.}}{3}{figure.2}\protected@file@percent }
+\newlabel{fig:capacity}{{2}{3}{Writing is not triggered by exhausted internal capacity. (A)~Instructed to answer without writing, models collapse after one to two dependent steps; with writing allowed, accuracy stays near ceiling ($n{=}30$ items per depth). (B)~The fraction of intermediate values written is 0.93 to 1.00 at every depth (Wilson intervals); the dashed curve is the onset a capacity-relief account predicts, and it does not appear}{figure.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Write: no inference-time capacity threshold}{3}{section.3}\protected@file@percent }
+\newlabel{sec:nohome}{{3}{3}{Write: no inference-time capacity threshold}{section.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Store: written positions hold causally active values}{3}{section.4}\protected@file@percent }
+\newlabel{sec:register}{{4}{3}{Store: written positions hold causally active values}{section.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Written values are retrieved through attention to their token, across the middle third of layers. (A)~Blocking later positions' attention to the edited value's token drops edit use to near zero on four models; matched control blocks change nothing. Points are means with 95\% Wilson intervals ($n{=}600$ runs per condition). (B)~Overwriting the hidden state at any single layer before the read redirects the answer; after it, nothing (Qwen3-4B). (C)~Blocking attention across the shaded middle band removes most edit use; no single layer's block matters (gray dots).}}{4}{figure.3}\protected@file@percent }
+\newlabel{fig:retrieval}{{3}{4}{Written values are retrieved through attention to their token, across the middle third of layers. (A)~Blocking later positions' attention to the edited value's token drops edit use to near zero on four models; matched control blocks change nothing. Points are means with 95\% Wilson intervals ($n{=}600$ runs per condition). (B)~Overwriting the hidden state at any single layer before the read redirects the answer; after it, nothing (Qwen3-4B). (C)~Blocking attention across the shaded middle band removes most edit use; no single layer's block matters (gray dots)}{figure.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Retrieve: attention to the written position}{4}{section.5}\protected@file@percent }
 \newlabel{sec:read}{{5}{4}{Retrieve: attention to the written position}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Attention-blocking experiments}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Compose: independent storage across positions}{4}{section.6}\protected@file@percent }
+\newlabel{sec:compose}{{6}{4}{Compose: independent storage across positions}{section.6}{}}
 \citation{lanham2023faithfulness}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Written values are retrieved through attention to their token, across the middle third of layers. (A)~Blocking later positions' attention to the edited value's token drops edit use to near zero on four models; matched control blocks change nothing. Points are means with 95\% Wilson intervals ($n{=}600$ runs per condition). (B)~Overwriting the hidden state at any single layer before the read redirects the answer; after it, nothing (Qwen3-4B). (C)~Blocking attention across the shaded middle band removes most edit use; no single layer's block matters (gray dots).}}{5}{figure.3}\protected@file@percent }
-\newlabel{fig:retrieval}{{3}{5}{Written values are retrieved through attention to their token, across the middle third of layers. (A)~Blocking later positions' attention to the edited value's token drops edit use to near zero on four models; matched control blocks change nothing. Points are means with 95\% Wilson intervals ($n{=}600$ runs per condition). (B)~Overwriting the hidden state at any single layer before the read redirects the answer; after it, nothing (Qwen3-4B). (C)~Blocking attention across the shaded middle band removes most edit use; no single layer's block matters (gray dots)}{figure.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Where retrieval occurs across layers}{5}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Compose: independent storage across positions}{5}{section.6}\protected@file@percent }
-\newlabel{sec:compose}{{6}{5}{Compose: independent storage across positions}{section.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}When models retrieve versus recompute}{5}{section.7}\protected@file@percent }
-\newlabel{sec:check}{{7}{5}{When models retrieve versus recompute}{section.7}{}}
 \citation{meng2022rome}
 \citation{geiger2021causal}
 \citation{heimersheim2024patching}
@@ -49,6 +40,12 @@
 \bibcite{gurnee2026jspace}{{2}{2026}{{Gurnee et~al.}}{{Gurnee, Sofroniew, Pearce, Piotrowski, Kauvar, Chen, Soligo, Bogdan, Ong, Wang, Thompson, Abrahams, Kantamneni, Ameisen, Batson, and Lindsey}}}
 \bibcite{heimersheim2024patching}{{3}{2024}{{Heimersheim and Nanda}}{{}}}
 \bibcite{korbak2025monitor}{{4}{2025}{{Korbak et~al.}}{{Korbak, Balesni, Barnes, Bengio, et~al.}}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}When models retrieve versus recompute}{5}{section.7}\protected@file@percent }
+\newlabel{sec:check}{{7}{5}{When models retrieve versus recompute}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Related work}{5}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Limitations}{5}{section.9}\protected@file@percent }
+\newlabel{sec:limits}{{9}{5}{Limitations}{section.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{5}{section.10}\protected@file@percent }
 \bibcite{lanchantin2023selfnotes}{{5}{2023}{{Lanchantin et~al.}}{{Lanchantin, Toshniwal, Weston, Szlam, and Sukhbaatar}}}
 \bibcite{lanham2023faithfulness}{{6}{2023}{{Lanham et~al.}}{{}}}
 \bibcite{meng2022rome}{{7}{2022}{{Meng et~al.}}{{Meng, Bau, Andonian, and Belinkov}}}
@@ -56,18 +53,16 @@
 \bibcite{pfau2024dot}{{9}{2024}{{Pfau et~al.}}{{Pfau, Merrill, and Bowman}}}
 \bibcite{shih2026registers}{{10}{2026}{{Shih et~al.}}{{Shih, Winnicki, and Darve}}}
 \bibcite{turpin2023unfaithful}{{11}{2023}{{Turpin et~al.}}{{Turpin, Michael, Perez, and Bowman}}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Related work}{6}{section.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}Limitations}{6}{section.9}\protected@file@percent }
-\newlabel{sec:limits}{{9}{6}{Limitations}{section.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{6}{section.10}\protected@file@percent }
 \bibcite{latent2026}{{12}{2026}{{Wang}}{{}}}
 \bibcite{zhu2025variables}{{13}{2025}{{Zhu et~al.}}{{}}}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Per-model edit and patch rates}{7}{appendix.A}\protected@file@percent }
-\newlabel{app:table}{{A}{7}{Per-model edit and patch rates}{appendix.A}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Text-edit following and state-patch outcomes by model.}}{7}{table.1}\protected@file@percent }
-\newlabel{tab:mechanism}{{1}{7}{Text-edit following and state-patch outcomes by model}{table.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Coarse cross-model layer sweeps}{7}{appendix.B}\protected@file@percent }
-\newlabel{app:sweeps}{{B}{7}{Coarse cross-model layer sweeps}{appendix.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Per-model edit and patch rates}{6}{appendix.A}\protected@file@percent }
+\newlabel{app:table}{{A}{6}{Per-model edit and patch rates}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Text-edit following and state-patch outcomes by model.}}{6}{table.1}\protected@file@percent }
+\newlabel{tab:mechanism}{{1}{6}{Text-edit following and state-patch outcomes by model}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Coarse cross-model layer sweeps}{6}{appendix.B}\protected@file@percent }
+\newlabel{app:sweeps}{{B}{6}{Coarse cross-model layer sweeps}{appendix.B}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {C}Generation and intervention configuration}{7}{appendix.C}\protected@file@percent }
 \newlabel{app:config}{{C}{7}{Generation and intervention configuration}{appendix.C}{}}
-\gdef \@abspage@last{8}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces No intervention moves state between the workspace and the trace: J-space ablation and random directions leave accuracy unchanged; residual lesions hurt the internally held box-tracking task far more than the written chain task; a token cap below the per-step floor collapses accuracy by truncation.}}{7}{figure.4}\protected@file@percent }
+\newlabel{fig:interventions}{{4}{7}{No intervention moves state between the workspace and the trace: J-space ablation and random directions leave accuracy unchanged; residual lesions hurt the internally held box-tracking task far more than the written chain task; a token cap below the per-step floor collapses accuracy by truncation}{figure.4}{}}
+\gdef \@abspage@last{7}

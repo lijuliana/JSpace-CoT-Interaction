@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  30 AUG 2026 02:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  30 AUG 2026 03:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -378,41 +378,32 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 )
-(/usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
-Package: enumitem 2025/02/06 v3.11 Customized lists
-\labelindent=\skip59
-\enit@outerparindent=\dimen183
-\enit@toks=\toks28
-\enit@inbox=\box55
-\enit@count@id=\count310
-\enitdp@description=\count311
-)
 (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count312
-\l__pdf_internal_box=\box56
+\l__color_backend_stack_int=\count310
+\l__pdf_internal_box=\box55
 )
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -480,7 +471,7 @@ LaTeX Font Info:    ... okay on input line 26.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 26.
+Package hyperref Info: Link coloring OFF on input line 24.
 (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
@@ -488,17 +479,17 @@ Package hyperref Info: Link coloring OFF on input line 26.
 
 (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count313
-\scratchdimen=\dimen184
-\scratchbox=\box57
-\nofMPsegments=\count314
-\nofMParguments=\count315
-\everyMPshowfont=\toks29
-\MPscratchCnt=\count316
-\MPscratchDim=\dimen185
-\MPnumerator=\count317
-\makeMPintoPDFobject=\count318
-\everyMPtoPDFconversion=\toks30
+\scratchcounter=\count311
+\scratchdimen=\dimen183
+\scratchbox=\box56
+\nofMPsegments=\count312
+\nofMParguments=\count313
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count314
+\MPscratchDim=\dimen184
+\MPnumerator=\count315
+\makeMPintoPDFobject=\count316
+\everyMPtoPDFconversion=\toks29
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -508,28 +499,28 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 29.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 29.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 32
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 30
 .
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
-<figures/F2_registers.pdf, id=84, 397.485pt x 299.92049pt>
+<figures/F2_registers.pdf, id=56, 397.485pt x 299.92049pt>
 File: figures/F2_registers.pdf Graphic file (type pdf)
 <use figures/F2_registers.pdf>
-Package pdftex.def Info: figures/F2_registers.pdf  used on input line 40.
+Package pdftex.def Info: figures/F2_registers.pdf  used on input line 38.
 (pdftex.def)             Requested size: 286.18967pt x 215.94714pt.
 
 
@@ -539,53 +530,52 @@ Package pdftex.def Info: figures/F2_registers.pdf  used on input line 40.
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2025
 /texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
-Underfull \vbox (badness 4391) has occurred while \output is active []
-
-
 
 [2 <./figures/F2_registers.pdf>]
-<figures/F1_capacity.pdf, id=185, 397.485pt x 242.10449pt>
+<figures/F1_capacity.pdf, id=151, 397.485pt x 133.6995pt>
 File: figures/F1_capacity.pdf Graphic file (type pdf)
 <use figures/F1_capacity.pdf>
-Package pdftex.def Info: figures/F1_capacity.pdf  used on input line 75.
-(pdftex.def)             Requested size: 270.28687pt x 164.63257pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+Package pdftex.def Info: figures/F1_capacity.pdf  used on input line 60.
+(pdftex.def)             Requested size: 270.28687pt x 90.91647pt.
 
 
 [3 <./figures/F1_capacity.pdf>]
-<figures/F3_retrieval.pdf, id=246, 397.485pt x 184.28851pt>
+<figures/F3_retrieval.pdf, id=209, 397.485pt x 184.28851pt>
 File: figures/F3_retrieval.pdf Graphic file (type pdf)
 <use figures/F3_retrieval.pdf>
-Package pdftex.def Info: figures/F3_retrieval.pdf  used on input line 99.
+Package pdftex.def Info: figures/F3_retrieval.pdf  used on input line 78.
 (pdftex.def)             Requested size: 294.14107pt x 136.37698pt.
 
 
-[4]
+[4 <./figures/F3_retrieval.pdf>] (./main.bbl
 
-[5 <./figures/F3_retrieval.pdf>] (./main.bbl
+[5])
 
-[6])
+[6]
+<figures/F1C_interventions.pdf, id=286, 397.485pt x 112.0185pt>
+File: figures/F1C_interventions.pdf Graphic file (type pdf)
+<use figures/F1C_interventions.pdf>
+Package pdftex.def Info: figures/F1C_interventions.pdf  used on input line 160.
 
-[7]
+(pdftex.def)             Requested size: 286.18967pt x 80.65494pt.
 
-[8] (./main.aux)
+
+[7 <./figures/F1C_interventions.pdf>] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8F288A361AC62986C05D7CBB5AB9D16B;4284.
+(rerunfilecheck)             Checksum: 8D6C85F949C4A66E02D918788046DD66;2597.
  ) 
 Here is how much of TeX's memory you used:
- 12249 strings out of 473190
- 185878 string characters out of 5715801
- 605786 words of memory out of 5000000
- 35285 multiletter control sequences out of 15000+600000
+ 11906 strings out of 473190
+ 180173 string characters out of 5715801
+ 601090 words of memory out of 5000000
+ 34957 multiletter control sequences out of 15000+600000
  590942 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,9n,79p,1670b,636s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,10n,79p,1670b,616s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
 /usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
@@ -596,10 +586,10 @@ cal/texlive/2025/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/tex
 live/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2025/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2025/texmf-dist
 /fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 326090 bytes).
+Output written on main.pdf (7 pages, 347738 bytes).
 PDF statistics:
- 398 PDF objects out of 1000 (max. 8388607)
- 303 compressed objects within 4 object streams
- 51 named destinations out of 1000 (max. 500000)
- 176 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 370 PDF objects out of 1000 (max. 8388607)
+ 273 compressed objects within 3 object streams
+ 40 named destinations out of 1000 (max. 500000)
+ 125 words of extra memory for PDF output out of 10000 (max. 10000000)
 
