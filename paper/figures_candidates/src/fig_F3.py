@@ -99,7 +99,7 @@ axC.text(29.5, 0.10, "Late third\nblocked: 0.00", fontsize=5.8,
          ha="center", color=MUT)
 axC.plot(P_LAYERS, [max(0.0, K_NONE - v) for v in K_SINGLE], "o",
          color=GRAY, ms=2.4, zorder=3)
-axC.text(5.5, 0.52, "single layers\n(gray): no effect", fontsize=5.8,
+axC.text(5.5, 0.45, "any one layer\nalone (gray dots):\nno effect, even\ninside 12–23", fontsize=5.8,
          color=MUT, ha="center")
 axC.set_ylabel("Drop in edit use\nwhen blocked", fontsize=7)
 axC.set_ylim(-0.06, 1.0)
