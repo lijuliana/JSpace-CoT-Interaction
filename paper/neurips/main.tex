@@ -76,7 +76,7 @@ Figure~\ref{fig:registers} decomposes the effect of editing a written value, con
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.74\linewidth]{figures/F3_retrieval.pdf}
-\caption{Written values are retrieved through attention to their token, across the middle third of layers. (A)~Blocking later positions' attention to the edited value's token drops edit use to near zero on four models; matched control blocks change nothing. Points are means with 95\% Wilson intervals ($n{=}600$ runs per condition). (B)~Overwriting the hidden state at any single layer before the read redirects the answer; after it, nothing (Qwen3-4B). (C)~Blocking attention across the shaded middle band removes most edit use; no single layer's block matters (gray dots).}
+\caption{Written values are retrieved through attention to their token, across the middle third of layers. (A)~Blocking later positions' attention to the edited value's token drops edit use to near zero on four models; matched control blocks change nothing. Points are means with 95\% Wilson intervals ($n{=}600$ runs per condition). (B)~Overwriting the hidden state at any single layer before the read redirects the answer; after it, nothing (Qwen3-4B). (C)~Blocking the middle third removes 0.83 of edit use; the early and late thirds, and every single layer (gray dots), remove none.}
 \label{fig:retrieval}
 \end{figure}
 

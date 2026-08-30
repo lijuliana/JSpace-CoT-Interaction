@@ -82,14 +82,24 @@ axB.set_yticks([0, 0.5, 1.0])
 axB.tick_params(labelbottom=False)
 tag(axB, "b", x=-0.20)
 
-# (c) knockout necessity
-axC.bar((11.5 + 23.5) / 2, K_NONE - K_MID, width=12, color=SKY,
+# (c) knockout necessity: drop per blocked third, plus single layers
+K_EARLY, K_LATE = 0.857, 0.863
+axC.bar(5.5, K_NONE - K_EARLY, width=11.5, color=SKY, edgecolor="none",
+        zorder=2)
+axC.bar(17.5, K_NONE - K_MID, width=11.5, color=SKY, edgecolor="none",
+        zorder=2)
+axC.bar(29.5, max(0.0, K_NONE - K_LATE), width=11.5, color=SKY,
         edgecolor="none", zorder=2)
+axC.text(5.5, 0.10, "Early third\nblocked: 0.00", fontsize=5.8,
+         ha="center", color=MUT)
+axC.text(17.5, 0.87, "0.83", fontsize=6.0, ha="center", color=MUT)
+axC.text(17.5, 0.62, "Middle third\nblocked", fontsize=6.0, ha="center",
+         color="white", va="top", zorder=4)
+axC.text(29.5, 0.10, "Late third\nblocked: 0.00", fontsize=5.8,
+         ha="center", color=MUT)
 axC.plot(P_LAYERS, [max(0.0, K_NONE - v) for v in K_SINGLE], "o",
          color=GRAY, ms=2.4, zorder=3)
-axC.text(17.5, 0.66, "Middle third\nblocked", fontsize=6.0, ha="center",
-         color="white", va="top", zorder=4)
-axC.text(28.5, 0.38, "Single-layer\nblocks:\nno effect", fontsize=6.0,
+axC.text(5.5, 0.52, "single layers\n(gray): no effect", fontsize=5.8,
          color=MUT, ha="center")
 axC.set_ylabel("Drop in edit use\nwhen blocked", fontsize=7)
 axC.set_ylim(-0.06, 1.0)

@@ -1,13 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1788031415.45692 "main.aux" "main.bbl" "main" 1788031499.47414 0
+["bibtex main"] 1788104575.73008 "main.aux" "main.bbl" "main" 1788104576.41215 0
   "./references.bib" 1787975164.94704 3738 93eb1c274dc068bcdece0d902bed837a ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "main.aux" 1788031499.27593 11272 ec7fd87a3172ff83c354b0f2bae4c5b7 "pdflatex"
+  "main.aux" 1788104576.22827 9465 67ee477257695c4813820bc2f23d9134 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1788031498.87085 "main.tex" "main.pdf" "main" 1788031499.47427 0
+["pdflatex"] 1788104575.81934 "/Users/julianali/Desktop/JSpace-CoT-Interaction/paper/neurips/main.tex" "main.pdf" "main" 1788104576.41226 0
+  "/Users/julianali/Desktop/JSpace-CoT-Interaction/paper/neurips/main.tex" 1788104574.88529 24802 9cd25626e83e8572d56505aedf82dc19 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -32,9 +33,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
-  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb" 1215737283 169201 9ebf99020dde51a5086e186761a34e8f ""
-  "/usr/local/texlive/2025/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb" 1136849748 45758 19968a0990191524e34e1994d4a31cb6 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb" 1136849748 44648 23115b2a545ebfe2c526c3ca99db8b95 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb" 1136849748 44729 811d6c62865936705a31c797a1d5dada ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb" 1136849748 46026 6dab18b61c907687b520c72847215a68 ""
@@ -110,14 +109,14 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761677261 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "figures/D_protocol.pdf" 1787797929.09211 45233 66082f5500b0efaa55b487d00b39192a ""
-  "figures/F1_capacity.pdf" 1788029967.61975 64448 9722a6817a093227517aa61658ec00aa ""
-  "figures/F2_registers.pdf" 1787797929.09307 85580 242c86ff208dd0a84950a6ceb989b7c5 ""
-  "figures/F3_retrieval.pdf" 1787797929.09347 48051 b1e8fd78b152b5f3ea2e08454c2753b8 ""
-  "main.aux" 1788031499.27593 11272 ec7fd87a3172ff83c354b0f2bae4c5b7 "pdflatex"
-  "main.bbl" 1788031415.55105 3794 f21391e15b2c101c3d69ac7d35467bb0 "bibtex main"
-  "main.out" 1788031499.27656 4231 37001190856b10eb5f52098482195441 "pdflatex"
-  "main.tex" 1788031489.58396 27418 7cb4b5e4e45231bb6242e369b03827bf ""
+  "figures/F1C_interventions.pdf" 1788075741.08992 38800 66bacd5367c82bdcaf470e7ad6b2c948 ""
+  "figures/F1_capacity.pdf" 1788075741.08956 50825 fd8150861418b4a2b2490a08d8b11817 ""
+  "figures/F2_registers.pdf" 1788104398.25202 75428 01df35a4cc85d02d0f84d98e6cb77067 ""
+  "figures/F3_retrieval.pdf" 1788104539.84553 48815 804ef053acc680845ffac6be1ce131d3 ""
+  "main.aux" 1788104576.22827 9465 67ee477257695c4813820bc2f23d9134 "pdflatex"
+  "main.bbl" 1788104575.8174 3764 1897c31997b1b059ee9eedfc8b0de238 "bibtex main"
+  "main.out" 1788104576.22882 2597 8d6c85f949c4a66e02d918788046dd66 "pdflatex"
+  "main.tex" 1788104574.88529 24802 9cd25626e83e8572d56505aedf82dc19 ""
   "neurips_2025.sty" 1787731934.39924 11625 aa8b84b0e1cfdd9d2dff0cc280140d5d ""
   (generated)
   "main.aux"
