@@ -1,14 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1788104575.73008 "main.aux" "main.bbl" "main" 1788104576.41215 0
+["bibtex main"] 1788124152.23344 "main.aux" "main.bbl" "main" 1788124152.90603 0
   "./references.bib" 1787975164.94704 3738 93eb1c274dc068bcdece0d902bed837a ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "main.aux" 1788104576.22827 9465 67ee477257695c4813820bc2f23d9134 "pdflatex"
+  "main.aux" 1788124152.70209 9435 546acbe47c77ffc7c249783d79064930 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1788104575.81934 "/Users/julianali/Desktop/JSpace-CoT-Interaction/paper/neurips/main.tex" "main.pdf" "main" 1788104576.41226 0
-  "/Users/julianali/Desktop/JSpace-CoT-Interaction/paper/neurips/main.tex" 1788104574.88529 24802 9cd25626e83e8572d56505aedf82dc19 ""
+["pdflatex"] 1788124152.31447 "main.tex" "main.pdf" "main" 1788124152.90614 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -112,11 +111,11 @@
   "figures/F1C_interventions.pdf" 1788075741.08992 38800 66bacd5367c82bdcaf470e7ad6b2c948 ""
   "figures/F1_capacity.pdf" 1788075741.08956 50825 fd8150861418b4a2b2490a08d8b11817 ""
   "figures/F2_registers.pdf" 1788104398.25202 75428 01df35a4cc85d02d0f84d98e6cb77067 ""
-  "figures/F3_retrieval.pdf" 1788104539.84553 48815 804ef053acc680845ffac6be1ce131d3 ""
-  "main.aux" 1788104576.22827 9465 67ee477257695c4813820bc2f23d9134 "pdflatex"
-  "main.bbl" 1788104575.8174 3764 1897c31997b1b059ee9eedfc8b0de238 "bibtex main"
-  "main.out" 1788104576.22882 2597 8d6c85f949c4a66e02d918788046dd66 "pdflatex"
-  "main.tex" 1788104574.88529 24802 9cd25626e83e8572d56505aedf82dc19 ""
+  "figures/F3_retrieval.pdf" 1788121974.27206 57585 5dd28348a1bb50bdba7b6e85fbc4c0fc ""
+  "main.aux" 1788124152.70209 9435 546acbe47c77ffc7c249783d79064930 "pdflatex"
+  "main.bbl" 1788124152.31272 3794 f21391e15b2c101c3d69ac7d35467bb0 "bibtex main"
+  "main.out" 1788124152.70262 2519 f58e2ee405391732d7a0777a97d613e9 "pdflatex"
+  "main.tex" 1788124142.91931 25047 044c2c5c9cd852079f9dee3f8bffb096 ""
   "neurips_2025.sty" 1787731934.39924 11625 aa8b84b0e1cfdd9d2dff0cc280140d5d ""
   (generated)
   "main.aux"
